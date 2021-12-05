@@ -1,0 +1,3 @@
+Sitemap: http://angular-interview-task.marcosgimeno.com/sitemap.xml
+User-agent: *
+Disallow:
