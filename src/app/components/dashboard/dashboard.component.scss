@@ -1,0 +1,24 @@
+.mat-grid-tile {
+  &.green {
+    background-color: #90ee90;
+  }
+  &.blue {
+    background-color: #71cdcd;
+  }
+  &.purple {
+    background-color: #ddbdf1;
+  }
+  &.red {
+    background-color: #ffb6c1;
+  }
+
+  .mat-grid-tile-header {
+    font-size: 1.1rem;
+    justify-content: center;
+  }
+
+  .number {
+    font-size: 2.2rem;
+    color: #333;
+  }
+}

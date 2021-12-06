@@ -16,24 +16,28 @@ export class DashboardComponent {
     {
       title: 'Cinemas',
       apiEndpoint: 'cinemas',
+      class: 'green',
       isLoading: true,
       number: 0,
     },
     {
       title: 'Screens',
       apiEndpoint: null,
+      class: 'blue',
       isLoading: true,
       number: 0,
     },
     {
       title: 'Movies',
       apiEndpoint: 'movies',
+      class: 'purple',
       isLoading: true,
       number: 0,
     },
     {
       title: 'Bookings',
       apiEndpoint: 'bookings',
+      class: 'red',
       isLoading: true,
       number: 0,
     },
