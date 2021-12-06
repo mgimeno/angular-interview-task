@@ -71,91 +71,50 @@ language = language.toLowerCase();
 
 localStorage.setItem(localStorageKey, language);
 
-if (language == 'es') {
-  loadTranslations({
-    'index.title': 'El Gato y el Ratón. Juego Multijugador.',
-    'index.meta_description':
-      'Juega gratis al juego del Gato y el Ratón en un tablero de ajedrez. Juega online con amigos.',
-    'index.meta_og_description': 'Juega gratis al Gato y el Ratón con amigos',
+switch (language) {
+  case 'es':
+    loadTranslations({
+      'index.title': 'Ultraplex Frontend: Herramienta de gestión de cine',
+      'index.meta_description':
+        'Herramienta de gestión de cine para una tarea técnica',
+      'index.meta_og_description':
+        'Herramienta de gestión de cine para una tarea técnica',
 
-    'home.title': 'GATO Y RATON',
-    'home.description': 'Juega al gato y el ratón gratis',
-    'home.create_game': 'Crear partida',
-    'home.how_to_play': 'Como jugar',
-    'home.language': 'Idioma',
-    'home.join_game_description': 'Unirse a una partida',
-    'home.no_games_available': '0 partidas disponibles',
-    'home.table.player': 'Jugador',
-    'home.table.join': 'Entrar',
+      'menu.title-part-1': 'Ultraplex Frontend',
+      'menu.title-part-2': ' - Herramienta de gestión de cine',
+      'menu.dashboard': 'Inicio',
+      'menu.cinemas': 'Cines',
+      'menu.movies': 'Peliculas',
+      'menu.add-booking': 'Añadir reserva',
+      'menu.language': 'Idioma',
 
-    'loading_dialog.connecting': 'Conectando al servidor',
-    'loading_dialog.loading': 'Cargando...',
+      'select-language.select': 'Selecciona un idioma',
 
-    'select-language.select': 'Selecciona un idioma',
+      'page-not-found.title': '404 - Página no encontrada',
+      'page-not-found.back': 'Atrás',
+    });
+    break;
+  case 'de': {
+    loadTranslations({
+      'index.title': 'Ultraplex Frontend: Kino Verwaltungstool',
+      'index.meta_description':
+        'Kino Verwaltungstool für eine technische Aufgabe',
+      'index.meta_og_description':
+        'Kino Verwaltungstool für eine technische Aufgabe',
 
-    'page-not-found.not-found': '404 - Página no encontrada',
-    'page-not-found.back': 'Volver',
+      'menu.title-part-1': 'Ultraplex Frontend',
+      'menu.title-part-2': ' - Kino Verwaltungstool',
+      'menu.dashboard': 'Armaturenbrett',
+      'menu.cinemas': 'Kinos',
+      'menu.movies': 'Filme',
+      'menu.add-booking': 'Buchung hinzufügen',
+      'menu.language': 'Sprache',
 
-    'play.win': 'Ganaste!',
-    'play.lose': 'Perdiste',
-    'play.your_turn': 'Tu turno!',
-    'play.cat_turn_info': 'Selecciona un gato y muevelo',
-    'play.mouse_turn_info': 'Mueve el ratón',
-    'play.their_turn': 'Turno del oponente',
-    'play.is_thinking': 'esta pensando...',
-    'play.how_to_play': 'como jugar',
-    'play.exit_game': 'salir',
-    'play.surrender': 'rendirse',
-    'play.surrender_question': 'Te rindes?',
-    'play.rematch': 'revancha',
-    'play.rematch_awaiting': 'Esperando',
+      'select-language.select': 'Wähle eine Sprache',
 
-    'join.title': 'Entrar a una partida',
-    'join.name': 'Tu nombre',
-    'join.start_game': 'Empezar',
-
-    'create.title': 'Crear partida',
-    'create.name': 'Tu nombre',
-    'create.create_game': 'Crear partida',
-    'create.awaiting_title': 'Esperando a otro jugador',
-    'create.share_link_description':
-      'Comparte este link para unirse a tu partida',
-    'create.copy_link': 'Copiar link',
-    'create.copied': 'Copiado!',
-
-    'how_to_play.title': 'Como jugar',
-    'how_to_play-introduction_title': 'Introducción',
-    'how_to_play-introduction_text_1':
-      'Al gato y el ratón se juega en un tablero de ajedrez.',
-    'how_to_play-introduction_text_2':
-      'Se necesitan 5 piezas, 1 blanca para representar al ratón y 4 negras para representar a los gatos.',
-    'how_to_play-moving_title': 'Como se mueven las piezas?',
-    'how_to_play-moving_text':
-      'Todas las piezas se mueven diagonalmente sobre las casillas negras. El ratón puede mover hacia atras mientras que los gatos no pueden.',
-    'how_to_play-goal_title': 'Cual es el objetivo?',
-    'how_to_play-goal_text':
-      'El ratón debe alcanzar la última fila del tablero, mientras que los gatos deben arrinconar al ratón para que no pueda hacer ningun movimiento.',
-    'how_to_play-accept_button': 'Entendido!',
-
-    'chat.chat': 'Chat',
-    'chat.send': 'Enviar',
-    'chat.send_placeholder': 'Envia un mensaje...',
-    'chat.player_has_left': 'ha dejado la partida.',
-    'chat.player_wants_rematch': 'quiere la revancha.',
-    'chat.player_has_surrendered': 'se ha rendido.',
-    'chat.player_has_disconnected': 'se ha desconectado.',
-    'chat.player_has_reconnected': 'se ha reconectado.',
-
-    'select_team.select': 'Elige tu equipo',
-    'select_team.cats': 'gatos',
-    'select_team.mouse': 'ratón',
-    'select_team.opponent': 'oponente',
-
-    'button.cancel': 'Cancelar',
-    'button.yes': 'Si',
-
-    'error.missing_name': 'Escribe tu nombre',
-    'error.missing_team': 'Elige tu equipo',
-    'error.error_ocurred': 'Ha ocurrido un error',
-  });
+      'page-not-found.title': '404 - Seite nicht gefunden',
+      'page-not-found.back': 'Geh zurück',
+    });
+    break;
+  }
 }

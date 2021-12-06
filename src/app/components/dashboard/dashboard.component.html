@@ -1,0 +1,10 @@
+<h1>Dashboard</h1>
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile *ngFor="let tile of tiles">
+    <app-loader *ngIf="tile.isLoading"></app-loader>
+    <ng-container *ngIf="!tile.isLoading"></ng-container>
+    {{ tile.number }}
+    <br />
+    {{ tile.title }}
+  </mat-grid-tile>
+</mat-grid-list>

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  localStoragePrefix: "angular_interview_task_dev_"
+  localStoragePrefix: 'angular_interview_task_dev_',
+  apiURL: 'https://develop.hybrid.iov99.com/ultraplex/api/v1/',
 };
 
 /*
