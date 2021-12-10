@@ -28,16 +28,22 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { MoviesComponent } from './components/movies/movies.component';
 import { CinemasComponent } from './components/cinemas/cinemas.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { AppEffects, appFeatureName, appReducers } from './state';
+import { EffectsModule } from '@ngrx/effects';
+import { DashboardContainerComponent, TaskRequirementsComponent } from './components';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    DashboardContainerComponent,
     PageNotFoundComponent,
     SelectLanguageComponent,
     LoaderComponent,
     MoviesComponent,
     CinemasComponent,
+    TaskRequirementsComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +63,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatListModule,
     MatGridListModule,
+    StoreModule.forFeature(appFeatureName, appReducers),
+    EffectsModule.forFeature([AppEffects]),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([])
   ],
   providers: [
     {

@@ -1,12 +1,16 @@
 <h1>Dashboard</h1>
-<mat-grid-list cols="2" rowHeight="2:1">
-  <mat-grid-tile *ngFor="let tile of tiles" [ngClass]="tile.class">
+<mat-grid-list cols="2" rowHeight="160px">
+  <mat-grid-tile 
+  *ngFor="let tile of tiles" 
+  [ngClass]="tile.class" 
+  [class.clickable]="tile.onClickPath"
+  (click)="onTileClicked(tile.onClickPath)">
     <mat-grid-tile-header>
       {{ tile.title }}
     </mat-grid-tile-header>
-    <app-loader *ngIf="tile.isLoading"></app-loader>
-    <div *ngIf="!tile.isLoading" class="number">
-      {{ tile.number }}
+    <app-loader *ngIf="tile.count === undefined"></app-loader>
+    <div *ngIf="tile.count !== undefined" class="number">
+      {{ tile.count }}
     </div>
   </mat-grid-tile>
 </mat-grid-list>

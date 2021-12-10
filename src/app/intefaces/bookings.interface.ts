@@ -1,9 +1,9 @@
 import { IApiResponse } from './api-response.interface';
 
 export interface IBookingsApiResponse extends IApiResponse {
-  content: IBookingsApiContent[];
+  content: IBookingContent[];
 }
 
-export interface IBookingsApiContent {
+export interface IBookingContent {
   id: number;
 }

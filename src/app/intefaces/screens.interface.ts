@@ -1,10 +1,10 @@
 import { IApiResponse } from './api-response.interface';
 
 export interface IScreensApiResponse extends IApiResponse {
-  content: IScreensApiContent[];
+  content: IScreenContent[];
 }
 
-export interface IScreensApiContent {
+export interface IScreenContent {
   id: number;
   name: string;
 }

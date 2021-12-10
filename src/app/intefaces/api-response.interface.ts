@@ -1,4 +1,5 @@
 export interface IApiResponse {
+  content: any[];
   pageable: IPageable;
   totalElements: number;
   totalPages: number;

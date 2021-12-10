@@ -1,18 +1,18 @@
 import { IApiResponse } from './api-response.interface';
 
 export interface IScreeningsApiResponse extends IApiResponse {
-  content: IScreeningsApiContent[];
+  content: IScreeningContent[];
 }
 
-export interface IScreeningsApiContent {
+export interface IScreeningContent {
   id: number;
   cinemaName: string;
   screenName: string;
   start?: Date;
-  movie: IApiMovie;
+  movie: IMovie;
 }
 
-export interface IApiMovie {
+export interface IMovie {
   id: number;
   name: string;
   runtime?: number;

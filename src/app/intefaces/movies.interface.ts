@@ -1,10 +1,10 @@
 import { IApiResponse } from './api-response.interface';
 
 export interface IMoviesApiResponse extends IApiResponse {
-  content: IMoviesApiContent[];
+  content: IMovieContent[];
 }
 
-export interface IMoviesApiContent {
+export interface IMovieContent {
   id: number;
   name: string;
   runtime?: number;

@@ -8,4 +8,10 @@
   <url>
     <loc>http://angular-interview-task.marcosgimeno.com/</loc>
   </url>
+  <url>
+    <loc>http://angular-interview-task.marcosgimeno.com/cinemas</loc>
+  </url>
+  <url>
+    <loc>http://angular-interview-task.marcosgimeno.com/movies</loc>
+  </url>
 </urlset>

@@ -63,6 +63,15 @@
         >
         <a
           mat-list-item
+          [routerLink]="['/task-requirements']"
+          (click)="window.scrollTo(0, 0); !isLargeScreen && snav.toggle()"
+          [class.active]="doesUrlStartWith('/task-requirements')"
+        >
+          <mat-icon>ballot</mat-icon>
+          <span i18n="@@menu.">Requirements</span></a
+        >
+        <a
+          mat-list-item
           (click)="openSelectLanguage(); !isLargeScreen && snav.toggle()"
           [class.grayscale-image-when-not-hover]="isLargeScreen"
         >

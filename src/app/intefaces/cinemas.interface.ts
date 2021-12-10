@@ -1,16 +1,16 @@
 import { IApiResponse } from './api-response.interface';
 
 export interface ICinemasApiResponse extends IApiResponse {
-  content: ICinemasApiContent[];
+  content: ICinemaContent[];
 }
 
-export interface ICinemasApiContent {
+export interface ICinemaContent {
   id: number;
   name: string;
-  screens: IApiScreen[];
+  screens: IScreen[];
 }
 
-export interface IApiScreen {
+export interface IScreen {
   id: number;
   name: string;
 }
