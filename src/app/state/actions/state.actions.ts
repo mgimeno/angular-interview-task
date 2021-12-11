@@ -1,21 +1,23 @@
 import { createAction, props, union } from "@ngrx/store";
 import { IBookingsApiResponse, ICinemasApiResponse, IMoviesApiResponse } from "src/app/intefaces";
 
+export const fetchDashboardInfo = createAction('[Dashboard] Fetch Info');
 
-export const fetchCinemasPageStart = createAction('[Cinemas] Fetch Page Start', props<{pageNumber?: number}>());
-export const fetchCinemasPageSuccess = createAction('[Cinemas] Fetch Page Success', props<{data: ICinemasApiResponse}>());
-export const fetchMoviesPageStart = createAction('[Movies] Fetch Page Start', props<{pageNumber?: number}>());
-export const fetchMoviesPageSuccess = createAction('[Movies] Fetch Page Success', props<{data: IMoviesApiResponse}>());
-export const fetchBookingsPageStart = createAction('[Bookings] Fetch Page Start', props<{pageNumber?: number}>());
-export const fetchBookingsPageSuccess = createAction('[Bookings] Fetch Page Success', props<{data: IBookingsApiResponse}>());
+export const fetchCinemasStart = createAction('[Cinemas] Fetch Start', props<{isGetAll: boolean, isGetAlsoScreens: boolean, pageNumber: number}>());
+export const fetchCinemasSuccess = createAction('[Cinemas] Fetch Success', props<{isGetAll: boolean, isGetAlsoScreens: boolean, data: ICinemasApiResponse}>());
+export const fetchMoviesStart = createAction('[Movies] Fetch Start', props<{isGetAll: boolean, pageNumber: number}>());
+export const fetchMoviesSuccess = createAction('[Movies] Fetch Success', props<{isGetAll: boolean, data: IMoviesApiResponse}>());
+export const fetchBookingsStart = createAction('[Bookings] Fetch Start', props<{isGetAll: boolean, pageNumber: number}>());
+export const fetchBookingsSuccess = createAction('[Bookings] Fetch Success', props<{isGetAll: boolean, data: IBookingsApiResponse}>());
 
 export const AppActions = {
-    fetchCinemasPageStart,
-    fetchCinemasPageSuccess,
-    fetchMoviesPageStart,
-    fetchMoviesPageSuccess,
-    fetchBookingsPageStart,
-    fetchBookingsPageSuccess
+    fetchDashboardInfo,
+    fetchCinemasStart,
+    fetchCinemasSuccess,
+    fetchMoviesStart,
+    fetchMoviesSuccess,
+    fetchBookingsStart,
+    fetchBookingsSuccess
 };
 
 const appActionsUnion = union(AppActions);

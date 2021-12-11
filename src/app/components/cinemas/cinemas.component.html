@@ -1,2 +1,37 @@
-<app-loader *ngIf="isLoading"></app-loader>
-<div *ngIf="!isLoading">Dashboard</div>
+<div class="title-container">
+  <h1>Cinemas</h1>
+  <button type="button" mat-raised-button color="primary" (click)="onAddElement()"><mat-icon>add</mat-icon> Add cinema</button>
+</div>
+
+<app-loader *ngIf="!cinemas || cinemas.isLoading"></app-loader>
+
+<ng-container *ngIf="cinemas && !cinemas.isLoading" >
+<mat-table [dataSource]="cinemas.elements" class="mat-elevation-z1">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name || "N/A"}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="screens">
+      <mat-header-cell *matHeaderCellDef> Screens </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.screens?.length ?? 0}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <app-paginator 
+  [selectedPage]="(cinemas.pageNumber + 1)" 
+  [totalPages]="cinemas.totalPages" 
+  [pageSize]="cinemas.pageSize"
+  [totalElements]="cinemas.totalElements"
+  (pageSelected)="onPageSelected($event)">
+  </app-paginator>
+</ng-container>

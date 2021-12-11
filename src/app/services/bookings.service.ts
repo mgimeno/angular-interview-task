@@ -16,8 +16,4 @@ export class BookingsService {
    get(pageNumber?: number): Observable<IBookingsApiResponse>{
     return this.apiService.get<IBookingsApiResponse>(this.endpoint, pageNumber);
   }
-
-  getAll(): IBookingContent[]{
-    return this.apiService.getAll<IBookingContent>(this.endpoint);
-  }
 }

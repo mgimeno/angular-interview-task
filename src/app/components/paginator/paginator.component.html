@@ -1,0 +1,16 @@
+
+<div *ngIf="totalPages" class="paginator m-t-40">
+    <p class="text-center">
+        Showing {{pageSize}} of {{totalElements}}
+    </p>
+    <div class="paginator__pages-container">
+        <div 
+            *ngFor="let pageNumber of totalPages | times" 
+            class="paginator__page text-center" 
+            [ngClass]="{'selected': selectedPage === pageNumber, 'clickable': selectedPage !== pageNumber}"
+            (click)="onPageSelected(pageNumber)">
+            {{pageNumber}}
+        </div>
+    </div>
+</div>
+

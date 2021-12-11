@@ -22,6 +22,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -31,7 +32,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { AppEffects, appFeatureName, appReducers } from './state';
 import { EffectsModule } from '@ngrx/effects';
-import { DashboardContainerComponent, TaskRequirementsComponent } from './components';
+import { BookingsComponent, BookingsContainerComponent, CinemasContainerComponent, DashboardContainerComponent, PaginatorComponent, TaskRequirementsComponent } from './components';
+import { MoviesContainerComponent } from './components/movies-container/movies-container.component';
+import { TimesPipe } from './pipes/times.pipe';
+import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,14 @@ import { DashboardContainerComponent, TaskRequirementsComponent } from './compon
     LoaderComponent,
     MoviesComponent,
     CinemasComponent,
-    TaskRequirementsComponent
+    TaskRequirementsComponent,
+    MoviesContainerComponent,
+    CinemasContainerComponent,
+    PaginatorComponent,
+    TimesPipe,
+    BookingsComponent,
+    BookingsContainerComponent,
+    AddMovieDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +74,7 @@ import { DashboardContainerComponent, TaskRequirementsComponent } from './compon
     MatDialogModule,
     MatListModule,
     MatGridListModule,
+    MatTableModule,
     StoreModule.forFeature(appFeatureName, appReducers),
     EffectsModule.forFeature([AppEffects]),
     StoreModule.forRoot({}),
@@ -74,7 +86,7 @@ import { DashboardContainerComponent, TaskRequirementsComponent } from './compon
       useValue: { minWidth: 250, hasBackdrop: true },
     },
   ],
-  entryComponents: [SelectLanguageComponent, LoaderComponent],
+  entryComponents: [SelectLanguageComponent, AddMovieDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,23 @@
+@import 'variables';
+
+.paginator{
+    display: flex;
+    flex-direction: column;
+
+    &__pages-container{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    &__page{
+        width: 20px;
+        height: 20px;
+        background-color: #eee;
+        padding: 5px;
+        &.selected{
+            color: #fff;
+            background-color: $primaryColor;
+        }
+    }
+}

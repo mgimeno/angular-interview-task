@@ -56,8 +56,6 @@ export class AppComponent {
     });
   }
 
-  openAddBooking(): void {}
-
   @HostListener('window:resize', ['$event'])
   windowSizeChange() {
     if (this.windowSizeChangeTimeout) {

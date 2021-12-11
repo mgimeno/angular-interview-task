@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector, MemoizedSelector } from "@ngrx/store";
-import { IBookingsApiResponse, ICinemaContent, ICinemasApiResponse, IMoviesApiResponse } from "src/app/intefaces";
+import { AppConstants } from "src/app/constants";
+import { IBookingsState, ICinemaContent, ICinemasState, IDashboardTile, IMoviesState, IScreensState } from "src/app/intefaces";
 import { AppState } from "../reducers";
 import { appFeatureName } from "../state";
 
@@ -7,11 +8,32 @@ export const getAppState: MemoizedSelector<any, AppState> = createFeatureSelecto
 
 export const getSelectedCinema: MemoizedSelector<any, ICinemaContent | undefined> = createSelector(getAppState, ({selectedCinema}) => selectedCinema);
 
-export const getCinemas: MemoizedSelector<any, ICinemasApiResponse | undefined> = createSelector(getAppState, ({cinemas}) => cinemas);
-export const getCinemasCount: MemoizedSelector<any, number> = createSelector(getAppState, ({cinemas}) => cinemas?.totalElements ?? 0);
+export const getCinemas: MemoizedSelector<any, ICinemasState> = createSelector(getAppState, ({cinemas}) => cinemas);
+export const getIsLoadingCinemas: MemoizedSelector<any, boolean> = createSelector(getCinemas, ({isLoading}) => isLoading);
 
-export const getMovies: MemoizedSelector<any, IMoviesApiResponse | undefined> = createSelector(getAppState, ({movies}) => movies);
-export const getMoviesCount: MemoizedSelector<any, number> = createSelector(getAppState, ({movies}) => movies?.totalElements ?? 0);
+export const getMovies: MemoizedSelector<any, IMoviesState> = createSelector(getAppState, ({movies}) => movies);
+export const getIsLoadingMovies: MemoizedSelector<any, boolean> = createSelector(getMovies, ({isLoading}) => isLoading);
 
-export const getBookings: MemoizedSelector<any, IBookingsApiResponse | undefined> = createSelector(getAppState, ({bookings}) => bookings);
-export const getBookingsCount: MemoizedSelector<any, number> = createSelector(getAppState, ({bookings}) => bookings?.totalElements ?? 0);
+export const getBookings: MemoizedSelector<any, IBookingsState> = createSelector(getAppState, ({bookings}) => bookings);
+export const getIsLoadingBookings: MemoizedSelector<any, boolean> = createSelector(getBookings, ({isLoading}) => isLoading);
+
+export const getScreens: MemoizedSelector<any, IScreensState> = createSelector(getAppState, ({screens}) => screens);
+export const getIsLoadingScreens: MemoizedSelector<any, boolean> = createSelector(getScreens, ({isLoading}) => isLoading);
+
+export const getDashboardTiles: MemoizedSelector<any, IDashboardTile[]> = createSelector(getAppState, (state) => {
+    const tiles = AppConstants.initialDashboardTilesInfo;
+    const cinemasTile = tiles.find(tile => tile.id === "cinemas")!;
+    const moviesTile = tiles.find(tile => tile.id === "movies")!;
+    const screensTile = tiles.find(tile => tile.id === "screens")!;
+    const bookingsTile = tiles.find(tile => tile.id === "bookings")!;
+    cinemasTile.count = state.cinemas.totalElements;
+    cinemasTile.isLoading = state.cinemas.isLoading;
+    moviesTile.count = state.movies.totalElements;
+    moviesTile.isLoading = state.movies.isLoading;
+    screensTile.count = state.screens.isLoading ? undefined : state.screens.elements.length;
+    screensTile.isLoading = state.screens.isLoading;
+    bookingsTile.count = state.bookings.totalElements;
+    bookingsTile.isLoading = state.bookings.isLoading;
+
+    return tiles;
+});

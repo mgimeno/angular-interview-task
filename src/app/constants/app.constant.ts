@@ -9,32 +9,36 @@ export namespace AppConstants {
 
   export const initialDashboardTilesInfo: IDashboardTile[] = [
     {
-      id: 'cinemasCount',
+      id: 'cinemas',
       title: 'Cinemas', //todo translate
       onClickPath: 'cinemas',
       class: 'green',
       count: undefined,
+      isLoading: true
     },
     {
-      id: 'moviesCount',
+      id: 'movies',
       title: 'Movies',
       onClickPath: 'movies',
       class: 'purple',
       count: undefined,
+      isLoading: true
     },
     {
-      id: 'screensCount',
+      id: 'screens',
       title: 'Screens',
       onClickPath: undefined,
       class: 'red',
       count: undefined,
+      isLoading: true
     },
     {
-      id: 'bookingsCount',
+      id: 'bookings',
       title: 'Bookings',
-      onClickPath: undefined,
+      onClickPath: 'bookings',
       class: 'blue',
-      count: undefined
+      count: undefined,
+      isLoading: true
     },
   ];
 

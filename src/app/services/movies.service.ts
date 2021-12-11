@@ -16,8 +16,4 @@ export class MoviesService {
    get(pageNumber?: number): Observable<IMoviesApiResponse>{
     return this.apiService.get<IMoviesApiResponse>(this.endpoint, pageNumber);
   }
-
-  getAll(): IMovieContent[]{
-    return this.apiService.getAll<IMovieContent>(this.endpoint);
-  }
 }

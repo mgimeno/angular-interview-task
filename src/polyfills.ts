@@ -85,7 +85,9 @@ switch (language) {
       'menu.dashboard': 'Inicio',
       'menu.cinemas': 'Cines',
       'menu.movies': 'Peliculas',
+      'menu.bookings': 'Reservas',
       'menu.add-booking': 'Añadir reserva',
+      'menu.requirements': 'Requisitos',
       'menu.language': 'Idioma',
 
       'select-language.select': 'Selecciona un idioma',
@@ -107,7 +109,9 @@ switch (language) {
       'menu.dashboard': 'Armaturenbrett',
       'menu.cinemas': 'Kinos',
       'menu.movies': 'Filme',
+      'menu.bookings': 'Reservierung',
       'menu.add-booking': 'Buchung hinzufügen',
+      'menu.requirements': 'Bedarf',
       'menu.language': 'Sprache',
 
       'select-language.select': 'Wähle eine Sprache',

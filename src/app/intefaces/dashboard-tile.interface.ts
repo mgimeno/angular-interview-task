@@ -3,5 +3,6 @@ export interface IDashboardTile {
   title: string,
   onClickPath: string | undefined,
   class: string,
-  count: number | undefined
+  count: number | undefined,
+  isLoading: boolean
 }

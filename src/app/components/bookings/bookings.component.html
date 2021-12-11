@@ -1,0 +1,27 @@
+<div class="title-container">
+  <h1>Bookings</h1>
+  <button type="button" mat-raised-button color="primary" (click)="onAddElement()"><mat-icon>add</mat-icon> Add booking</button>
+</div>
+
+<app-loader *ngIf="!bookings || bookings.isLoading"></app-loader>
+
+<ng-container *ngIf="bookings && !bookings.isLoading">
+<mat-table [dataSource]="bookings.elements" class="mat-elevation-z1">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <app-paginator 
+  [selectedPage]="(bookings.pageNumber + 1)" 
+  [totalPages]="bookings.totalPages" 
+  [pageSize]="bookings.pageSize"
+  [totalElements]="bookings.totalElements"
+  (pageSelected)="onPageSelected($event)">
+  </app-paginator>
+</ng-container>

@@ -56,10 +56,12 @@
         >
         <a
           mat-list-item
-          (click)="openAddBooking(); !isLargeScreen && snav.toggle()"
+          [routerLink]="['/bookings']"
+          (click)="window.scrollTo(0, 0); !isLargeScreen && snav.toggle()"
+          [class.active]="doesUrlStartWith('/bookings')"
         >
-          <mat-icon>queue</mat-icon>
-          <span i18n="@@menu.add-booking">Add Booking</span></a
+          <mat-icon>book</mat-icon>
+          <span i18n="@@menu.bookings">Bookings</span></a
         >
         <a
           mat-list-item
@@ -68,7 +70,7 @@
           [class.active]="doesUrlStartWith('/task-requirements')"
         >
           <mat-icon>ballot</mat-icon>
-          <span i18n="@@menu.">Requirements</span></a
+          <span i18n="@@menu.requirements">Requirements</span></a
         >
         <a
           mat-list-item
