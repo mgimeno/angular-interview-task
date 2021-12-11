@@ -1,4 +1,5 @@
 @import "space-helpers";
+@import "variables";
 
 html,
 body {
@@ -54,3 +55,39 @@ table {
   }
 }
 
+.mat-dialog-content{
+  display: flex !important;
+  flex-direction: column;
+}
+
+.mat-dialog-actions{
+  justify-content: center;
+}
+
+//Notification Service
+
+.mat-snack-bar-container {
+  color: white;
+  min-width: 270px !important;
+
+  .mat-simple-snackbar {
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  &.success {
+    background-color: $successColor;
+  }
+
+  &.error {
+    background-color: $errorColor;
+  }
+
+  &.warning {
+    background-color: $warnColor;
+  }
+
+  &.info {
+    background-color: $infoColor;
+  }
+}

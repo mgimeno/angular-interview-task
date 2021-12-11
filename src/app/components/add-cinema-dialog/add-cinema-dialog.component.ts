@@ -4,22 +4,21 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { AppConstants } from 'src/app/constants';
 import { NotificationService } from 'src/app/services/notification.service';
-import { AppState, saveMovieStart } from 'src/app/state';
+import { AppState, saveCinemaStart } from 'src/app/state';
 
 @Component({
-  templateUrl: './add-movie-dialog.component.html',
-  styleUrls: ['./add-movie-dialog.component.scss']
+  templateUrl: './add-cinema-dialog.component.html',
+  styleUrls: ['./add-cinema-dialog.component.scss']
 })
-export class AddMovieDialogComponent {
+export class AddCinemaDialogComponent {
 
   maxNameLength: number = AppConstants.MAX_NAME_LENGTH;
   formGroup: FormGroup = new FormGroup({
-    'name': new FormControl(null, [Validators.required, Validators.maxLength(this.maxNameLength)]),
-    'runtime': new FormControl(null, [Validators.required, Validators.min(60),Validators.max(3600),  ]),
+    'name': new FormControl(null, [Validators.required, Validators.maxLength(this.maxNameLength)])
   });;
   
   constructor(
-    public dialogRef: MatDialogRef<AddMovieDialogComponent>, 
+    public dialogRef: MatDialogRef<AddCinemaDialogComponent>, 
     private notificationService: NotificationService,
     private store$: Store<AppState>
     ){}
@@ -29,18 +28,14 @@ export class AddMovieDialogComponent {
       if (this.formGroup.controls['name'].invalid) {
         this.notificationService.showError($localize`:@@error.missing_name:Type a name`);
       }
-      else if (this.formGroup.controls['runtime'].invalid) {
-        this.notificationService.showError($localize`:@@error.missing_runtime:Type the runtime`);
-      }
       return;
     }
 
     const payload: any = {
       name: this.formGroup.controls['name'].value,
-      runtime: this.formGroup.controls['runtime'].value
     };
 
-    this.store$.dispatch(saveMovieStart(payload));
+    this.store$.dispatch(saveCinemaStart(payload));
 
     this.onClose();
 

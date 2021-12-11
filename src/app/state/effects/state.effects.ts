@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, EMPTY, Observable, switchMap } from "rxjs";
+import { catchError, EMPTY, map, Observable, switchMap } from "rxjs";
 import { AppActions } from "../actions";
 import { BookingsService, CinemasService, MoviesService } from "src/app/services";
 import { IBookingsApiResponse, ICinemasApiResponse, IMoviesApiResponse } from "src/app/intefaces";
+import { Router } from "@angular/router";
+import { NotificationService } from "src/app/services/notification.service";
 
 @Injectable()
 export class AppEffects{
@@ -13,7 +15,9 @@ export class AppEffects{
         private actions$: Actions,
         private cinemasService: CinemasService, 
         private moviesService: MoviesService,
-        private bookingsService: BookingsService
+        private bookingsService: BookingsService,
+        private router: Router,
+        private notificationService: NotificationService
     ){}
 
 
@@ -41,7 +45,7 @@ export class AppEffects{
                         }
                         return actions; 
                     }),
-                    catchError(error => { console.error(error); return EMPTY; }) 
+                    catchError(error => { this.notificationService.showError(error); return EMPTY; }) 
              ))
         ));
 
@@ -58,7 +62,7 @@ export class AppEffects{
                         }
                         return actions; 
                     }),
-                    catchError(error => { console.error(error); return EMPTY; }) 
+                    catchError(error => { this.notificationService.showError(error); return EMPTY; }) 
              ))
         ));
 
@@ -75,9 +79,56 @@ export class AppEffects{
                         }
                         return actions; 
                     }),
-                    catchError(error => { console.error(error); return EMPTY; }) 
+                    catchError(error => { this.notificationService.showError(error); return EMPTY; }) 
              ))
         ));
+
+        public saveMovie$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AppActions.saveMovieStart),
+            switchMap(({name, runtime}) => 
+             this.moviesService.save({name, runtime})
+                .pipe(
+                    map(() => {
+                        this.notificationService.showSuccess("Movie saved successfully");
+                        this.router.navigate(['/movies']);
+                        return AppActions.fetchMoviesStart({isGetAll: false, pageNumber: 0});
+                    }),
+                    catchError(error => { this.notificationService.showError(error); return EMPTY; }) 
+             ))
+        ));
+
+        public saveCinema$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AppActions.saveCinemaStart),
+            switchMap(({name}) => 
+             this.cinemasService.save({name})
+                .pipe(
+                    map(() => {
+                        this.notificationService.showSuccess("Cinema saved successfully");
+                        this.router.navigate(['/cinemas']);
+                        return AppActions.fetchCinemasStart({isGetAll: false, isGetAlsoScreens: false, pageNumber: 0});
+                    }),
+                    catchError(error => { this.notificationService.showError(error); return EMPTY; }) 
+             ))
+        ));
+
+        public saveBooking$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AppActions.saveBookingStart),
+            switchMap(() => 
+             this.bookingsService.save()
+                .pipe(
+                    map(() => {
+                        this.notificationService.showSuccess("Booking saved successfully");
+                        this.router.navigate(['/bookings']);
+                        return AppActions.fetchBookingsStart({isGetAll: false, pageNumber: 0});
+                    }),
+                    catchError(error => { this.notificationService.showError(error); return EMPTY; }) 
+             ))
+        ));
+
+        
 
 }
 

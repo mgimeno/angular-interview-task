@@ -10,6 +10,7 @@ export const getSelectedCinema: MemoizedSelector<any, ICinemaContent | undefined
 
 export const getCinemas: MemoizedSelector<any, ICinemasState> = createSelector(getAppState, ({cinemas}) => cinemas);
 export const getIsLoadingCinemas: MemoizedSelector<any, boolean> = createSelector(getCinemas, ({isLoading}) => isLoading);
+export const getCinemasPageNumber: MemoizedSelector<any, number> = createSelector(getCinemas, ({pageNumber}) => pageNumber);
 
 export const getMovies: MemoizedSelector<any, IMoviesState> = createSelector(getAppState, ({movies}) => movies);
 export const getIsLoadingMovies: MemoizedSelector<any, boolean> = createSelector(getMovies, ({isLoading}) => isLoading);

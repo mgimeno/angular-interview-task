@@ -16,4 +16,8 @@ export class CinemasService {
    get(pageNumber?: number): Observable<ICinemasApiResponse>{
     return this.apiService.get<ICinemasApiResponse>(this.endpoint, pageNumber);
   }
+
+  save(payload: {name: string}): Observable<any>{
+    return this.apiService.put<any>(this.endpoint, payload);
+  }
 }

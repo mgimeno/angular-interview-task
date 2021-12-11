@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { IMovieContent, IMoviesApiResponse } from '../intefaces';
+import { IMoviesApiResponse } from '../intefaces';
 import { ApiService} from './api.service';
 
 @Injectable({
@@ -15,5 +15,9 @@ export class MoviesService {
 
    get(pageNumber?: number): Observable<IMoviesApiResponse>{
     return this.apiService.get<IMoviesApiResponse>(this.endpoint, pageNumber);
+  }
+
+    save(payload: {name: string, runtime: number}): Observable<any>{
+    return this.apiService.put<any>(this.endpoint, payload);
   }
 }

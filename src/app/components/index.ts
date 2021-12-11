@@ -11,3 +11,6 @@ export * from './task-requirements/task-requirements.component';
 export * from './paginator/paginator.component';
 export * from './bookings/bookings.component';
 export * from './bookings-container/bookings-container.component';
+export * from './add-movie-dialog/add-movie-dialog.component';
+export * from './add-cinema-dialog/add-cinema-dialog.component';
+export * from './add-booking-dialog/add-booking-dialog.component';

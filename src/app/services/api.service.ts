@@ -21,6 +21,11 @@ export class ApiService {
       endpoint, null, params);
   }
 
+  public put<T>(endpoint: string, payload: any): Observable<T>{
+    return this.call<T>(HttpMethodsEnum.PUT,
+      endpoint, payload);
+  }
+
   private call<T>(
     method: string,
     urlPath: string,

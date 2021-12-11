@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectLanguageComponent } from './components/select-language/select-language.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatTableModule} from '@angular/material/table';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -32,10 +33,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { AppEffects, appFeatureName, appReducers } from './state';
 import { EffectsModule } from '@ngrx/effects';
-import { BookingsComponent, BookingsContainerComponent, CinemasContainerComponent, DashboardContainerComponent, PaginatorComponent, TaskRequirementsComponent } from './components';
+import { AddBookingDialogComponent, BookingsComponent, BookingsContainerComponent, CinemasContainerComponent, DashboardContainerComponent, PaginatorComponent, TaskRequirementsComponent } from './components';
 import { MoviesContainerComponent } from './components/movies-container/movies-container.component';
 import { TimesPipe } from './pipes/times.pipe';
 import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie-dialog.component';
+import { AddCinemaDialogComponent } from './components/add-cinema-dialog/add-cinema-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie
     TimesPipe,
     BookingsComponent,
     BookingsContainerComponent,
-    AddMovieDialogComponent
+    AddMovieDialogComponent,
+    AddCinemaDialogComponent,
+    AddBookingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +66,7 @@ import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
     MatOptionModule,
@@ -75,6 +80,7 @@ import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie
     MatListModule,
     MatGridListModule,
     MatTableModule,
+    MatSnackBarModule,
     StoreModule.forFeature(appFeatureName, appReducers),
     EffectsModule.forFeature([AppEffects]),
     StoreModule.forRoot({}),
@@ -86,7 +92,7 @@ import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie
       useValue: { minWidth: 250, hasBackdrop: true },
     },
   ],
-  entryComponents: [SelectLanguageComponent, AddMovieDialogComponent],
+  entryComponents: [SelectLanguageComponent, AddMovieDialogComponent,AddCinemaDialogComponent, AddBookingDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

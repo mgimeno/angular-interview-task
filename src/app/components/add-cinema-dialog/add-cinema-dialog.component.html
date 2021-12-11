@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" autocomplete="off">
-  <h1 mat-dialog-title i18n="@@add-movie.title">Add movie</h1>
+  <h1 mat-dialog-title i18n="@@add-movie.title">Add cinema</h1>
   <mat-dialog-content>
 
     <mat-form-field [formGroup]=formGroup>
@@ -11,16 +11,6 @@
       [maxlength]="maxNameLength" 
       autocomplete=”false” 
       name=searchName>
-    </mat-form-field>
-
-    <mat-form-field [formGroup]=formGroup>
-      <input 
-      type="number" 
-      matInput 
-      formControlName="runtime" 
-      placeholder="Runtime" 
-      autocomplete=”false” 
-      name=searchRuntime>
     </mat-form-field>
     
   </mat-dialog-content>

@@ -1,6 +1,11 @@
 import { IDashboardTile } from "../intefaces";
 
 export namespace AppConstants {
+
+  export const MAX_NAME_LENGTH = 20;
+  export const NOTIFICATION_DURATION_MILLISECONDS = 3000;
+  export const NOTIFICATION_ERROR_DURATION_MILLISECONDS = 10000;
+
   export const AVAILABLE_LANGUAGE_CODES: any = {
     english: 'en_GB',
     spanish: 'es_ES',

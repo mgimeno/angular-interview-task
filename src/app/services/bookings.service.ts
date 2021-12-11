@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { IBookingsApiResponse, IBookingContent } from '../intefaces';
+import { IBookingsApiResponse } from '../intefaces';
 import { ApiService} from './api.service';
 
 @Injectable({
@@ -16,4 +16,9 @@ export class BookingsService {
    get(pageNumber?: number): Observable<IBookingsApiResponse>{
     return this.apiService.get<IBookingsApiResponse>(this.endpoint, pageNumber);
   }
+
+  save(): Observable<any>{
+    return this.apiService.put<any>(this.endpoint, null);
+  }
+
 }
