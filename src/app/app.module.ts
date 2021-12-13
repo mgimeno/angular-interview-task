@@ -34,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { AppEffects, appFeatureName, appReducers } from './state';
 import { EffectsModule } from '@ngrx/effects';
-import { AddBookingDialogComponent, BookingsComponent, BookingsContainerComponent, CinemasContainerComponent, DashboardContainerComponent, PaginatorComponent, TaskRequirementsComponent } from './components';
+import { AddBookingDialogComponent, AddScreenDialogComponent, AddScreeningDialogComponent, BookingsComponent, BookingsContainerComponent, CinemaComponent, CinemaContainerComponent, CinemasContainerComponent, DashboardContainerComponent, PaginatorComponent, TaskRequirementsComponent } from './components';
 import { MoviesContainerComponent } from './components/movies-container/movies-container.component';
 import { TimesPipe } from './pipes/times.pipe';
 import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie-dialog.component';
@@ -59,7 +59,11 @@ import { AddCinemaDialogComponent } from './components/add-cinema-dialog/add-cin
     BookingsContainerComponent,
     AddMovieDialogComponent,
     AddCinemaDialogComponent,
-    AddBookingDialogComponent
+    AddBookingDialogComponent,
+    CinemaComponent,
+    CinemaContainerComponent,
+    AddScreenDialogComponent,
+    AddScreeningDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +98,7 @@ import { AddCinemaDialogComponent } from './components/add-cinema-dialog/add-cin
       useValue: { minWidth: 250, hasBackdrop: true },
     },
   ],
-  entryComponents: [SelectLanguageComponent, AddMovieDialogComponent,AddCinemaDialogComponent, AddBookingDialogComponent],
+  entryComponents: [SelectLanguageComponent, AddMovieDialogComponent,AddCinemaDialogComponent, AddBookingDialogComponent, AddScreenDialogComponent,AddScreeningDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

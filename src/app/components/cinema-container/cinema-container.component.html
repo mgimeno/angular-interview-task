@@ -1,0 +1,6 @@
+<app-cinema
+  [cinema]="cinema$ | async"
+  (screenSelected)="onScreenSelected($event)"
+  (screeningSelected)="onScreeningSelected($event)"
+>
+</app-cinema>

@@ -1,5 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { IBookingsState, ICinemaContent, ICinemasState, IMoviesState, IScreensState } from "src/app/intefaces";
+import { IBookingsState, ICinemasState, IMoviesState, IScreensState } from "src/app/intefaces";
+import { ISelectedCinemaState } from "src/app/intefaces/selected-cinema-state.interface";
 import { AppActions } from "../actions";
 
 export interface AppState{
@@ -7,7 +8,7 @@ export interface AppState{
     screens: IScreensState,
     movies: IMoviesState;
     bookings: IBookingsState;
-    selectedCinema: ICinemaContent | undefined;
+    selectedCinema: ISelectedCinemaState;
 }
 
 export const initialState: AppState = {
@@ -43,7 +44,17 @@ export const initialState: AppState = {
         totalPages: undefined,
         totalElements: undefined
     },
-    selectedCinema: undefined
+    selectedCinema: {
+        id: undefined,
+        name: undefined,
+        screens:undefined,
+        screenings: undefined,
+        selectedScreen: undefined,
+        selectedScreening: undefined,
+        isLoading: true,
+        isLoadingScreens: false,
+        isLoadingScreenings: false
+    }
 };
 
 export const reducer = createReducer(
@@ -158,7 +169,108 @@ export const reducer = createReducer(
             ...state,
             bookings
         };
-    })
+    }),
+    on(AppActions.fetchCinemaStart, (state, {id}) => {
+        const selectedCinema = {...state.selectedCinema};
+        
+        selectedCinema.id = undefined;
+        selectedCinema.name = undefined;
+        selectedCinema.screens = undefined;
+        selectedCinema.screenings = undefined; 
+        selectedCinema.selectedScreen = undefined;
+        selectedCinema.selectedScreening = undefined;
+        selectedCinema.isLoading = true;
+        selectedCinema.isLoadingScreens = false;
+        selectedCinema.isLoadingScreenings = false;
+
+        return {
+            ...state,
+            selectedCinema
+        };
+    }),
+    on(AppActions.fetchCinemaSuccess, (state, {data}) => {
+        const selectedCinema = {...state.selectedCinema};
+        
+        selectedCinema.id = data?.id;
+        selectedCinema.name = data?.name;
+        selectedCinema.isLoading = false;
+
+        return {
+            ...state,
+            selectedCinema
+        };
+    }),
+    on(AppActions.fetchCinemaScreensStart, (state, {cinemaId}) => {
+        const selectedCinema = {...state.selectedCinema};
+        
+        selectedCinema.screens = undefined;
+        selectedCinema.isLoadingScreens = true;
+        selectedCinema.selectedScreening = undefined;
+        selectedCinema.screenings = undefined;
+
+        return {
+            ...state,
+            selectedCinema
+        };
+    }),
+    on(AppActions.fetchCinemaScreensSuccess, (state, {data}) => {
+        const selectedCinema = {...state.selectedCinema};
+        
+        selectedCinema.screens = data;
+        selectedCinema.isLoadingScreens = false;
+
+        return {
+            ...state,
+            selectedCinema
+        };
+    }),
+    on(AppActions.fetchCinemaScreenScreeningsStart, (state, {cinemaId, screenName}) => {
+        const selectedCinema = {...state.selectedCinema};
+        
+        selectedCinema.screenings = undefined;
+        selectedCinema.isLoadingScreenings = true;
+
+        return {
+            ...state,
+            selectedCinema
+        };
+    }),
+    on(AppActions.fetchCinemaScreenScreeningsSuccess, (state, {data}) => {
+        const selectedCinema = {...state.selectedCinema};
+        
+        selectedCinema.screenings = data;
+        selectedCinema.isLoadingScreenings = false;
+
+        return {
+            ...state,
+            selectedCinema
+        };
+    }),
+    on(AppActions.selectScreenStart, (state, {cinemaId, screenId,screenName}) => {
+        const selectedCinema = {...state.selectedCinema};
+
+        const screen = selectedCinema.screens?.find(screen=> screen.id === screenId);
+        selectedCinema.selectedScreen = screen;
+        selectedCinema.selectedScreening = undefined;
+        selectedCinema.screenings = undefined;
+
+        return {
+            ...state,
+            selectedCinema
+        };
+    }),
+    on(AppActions.selectScreeningStart, (state, {cinemaId, screeningId}) => {
+        const selectedCinema = {...state.selectedCinema};
+
+        const screening = selectedCinema.screenings?.find(screening=> screening.id === screeningId);
+        selectedCinema.selectedScreening = screening;
+
+        return {
+            ...state,
+            selectedCinema
+        };
+    }),
+    
 );
 
 export const appReducer = (

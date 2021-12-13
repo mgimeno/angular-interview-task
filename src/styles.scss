@@ -46,7 +46,7 @@ table {
   justify-content: space-between;
   margin-bottom: 25px;
 
-  h1{
+  h1, h2{
     margin: 0;
   }
 
@@ -90,5 +90,14 @@ table {
 
   &.info {
     background-color: $infoColor;
+  }
+}
+
+
+.mat-row.clickable:hover{
+  background-color: $primaryColor;
+
+  .mat-cell{
+      color: #fff;
   }
 }

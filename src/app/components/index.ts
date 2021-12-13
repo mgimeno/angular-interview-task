@@ -14,3 +14,7 @@ export * from './bookings-container/bookings-container.component';
 export * from './add-movie-dialog/add-movie-dialog.component';
 export * from './add-cinema-dialog/add-cinema-dialog.component';
 export * from './add-booking-dialog/add-booking-dialog.component';
+export * from './cinema/cinema.component';
+export * from './cinema-container/cinema-container.component';
+export * from './add-screen-dialog/add-screen-dialog.component';
+export * from './add-screening-dialog/add-screening-dialog.component';

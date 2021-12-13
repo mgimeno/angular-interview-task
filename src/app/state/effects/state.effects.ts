@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, EMPTY, map, Observable, switchMap } from "rxjs";
+import { catchError, EMPTY, map, Observable, switchMap, tap } from "rxjs";
 import { AppActions } from "../actions";
 import { BookingsService, CinemasService, MoviesService } from "src/app/services";
-import { IBookingsApiResponse, ICinemasApiResponse, IMoviesApiResponse } from "src/app/intefaces";
-import { Router } from "@angular/router";
+import { IBookingsApiResponse, ICinemaContent, ICinemasApiResponse, IMoviesApiResponse, IScreeningsApiResponse, IScreensApiResponse } from "src/app/intefaces";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NotificationService } from "src/app/services/notification.service";
 import { HttpErrorResponse } from "@angular/common/http";
 
@@ -49,6 +49,10 @@ export class AppEffects{
                     catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
              ))
         ));
+
+       
+
+        
 
         public getMovies$ = createEffect(() =>
         this.actions$.pipe(
@@ -117,13 +121,98 @@ export class AppEffects{
         public saveBooking$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AppActions.saveBookingStart),
-            switchMap(() => 
-             this.bookingsService.save()
+            switchMap(({screeningId, seat}) => 
+             this.bookingsService.save({screeningId, seat})
+                .pipe(
+                    tap(() => {
+                        this.notificationService.showSuccess("Booking saved successfully");
+                    }),
+                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+             ))
+        ),
+        { dispatch: false }
+        );
+
+        public getCinema$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AppActions.fetchCinemaStart),
+            switchMap(({id}) => 
+             this.cinemasService.getAll()
+                .pipe(
+                    switchMap((data: ICinemasApiResponse) => {
+                        const cinema = data.content.find(cinema=> cinema.id === id);
+                        if(cinema){
+                            return [
+                                AppActions.fetchCinemaSuccess({data: cinema}),
+                                AppActions.fetchCinemaScreensStart({cinemaId: id})
+                            ];
+                        }
+                        else{
+                            this.notificationService.showError("Cinema not found"); return EMPTY;
+                        }
+                    }),
+                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+             ))
+        ));
+
+        public getCinemaScreens$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AppActions.fetchCinemaScreensStart),
+            switchMap(({cinemaId}) => 
+             this.cinemasService.getAllScreensForCinema(cinemaId)
+                .pipe(
+                    map((data: IScreensApiResponse) => 
+                        AppActions.fetchCinemaScreensSuccess({data: data.content})
+                    ),
+                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+             ))
+        ));
+
+        public selectScreenStart$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AppActions.selectScreenStart),
+            map(({cinemaId, screenId, screenName}) => 
+             AppActions.fetchCinemaScreenScreeningsStart({cinemaId, screenName})
+             )
+        ));
+
+        public getAllScreeningsForCinema$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AppActions.fetchCinemaScreenScreeningsStart),
+            switchMap(({cinemaId, screenName}) => 
+             this.cinemasService.getAllScreeningsForCinema(cinemaId)
+                .pipe(
+                    map((data: IScreeningsApiResponse) => {
+                        const screenings = data.content.filter(screening=> screening.screenName === screenName);
+                        return AppActions.fetchCinemaScreenScreeningsSuccess({data: screenings});
+                    }),
+                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+             ))
+        ));
+
+        public saveCinemaScreenStart$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AppActions.saveCinemaScreenStart),
+            switchMap(({cinemaId,name}) => 
+             this.cinemasService.saveScreen(cinemaId, {name})
                 .pipe(
                     map(() => {
-                        this.notificationService.showSuccess("Booking saved successfully");
-                        this.router.navigate(['/bookings']);
-                        return AppActions.fetchBookingsStart({isGetAll: false, pageNumber: 0});
+                        this.notificationService.showSuccess("Screen saved successfully");
+                        return AppActions.fetchCinemaScreensStart({cinemaId});
+                    }),
+                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+             ))
+        ));
+
+        public saveCinemaScreenScreeningStart$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AppActions.saveCinemaScreenScreeningStart),
+            switchMap(({cinemaId, screenId, screenName, movieId, startTime}) => 
+             this.cinemasService.saveScreening(cinemaId, screenId, {movieId, startTime})
+                .pipe(
+                    map(() => {
+                        this.notificationService.showSuccess("Screening saved successfully");
+                        return AppActions.fetchCinemaScreenScreeningsStart({cinemaId, screenName});
                     }),
                     catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
              ))

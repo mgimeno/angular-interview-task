@@ -11,11 +11,14 @@ import { HttpMethodsEnum } from '../enums';
 export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
-  public get<T>(endpoint: string, pageNumber?: number): Observable<T>{
+  public get<T>(endpoint: string, pageNumber?: number, pageSize?: number): Observable<T>{
     const params: any = {
     };
     if(pageNumber){
       params.page = pageNumber;
+    }
+    if(pageSize){
+      params.size = pageSize;
     }
     return this.call<T>(HttpMethodsEnum.GET,
       endpoint, null, params);

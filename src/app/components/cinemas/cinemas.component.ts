@@ -26,7 +26,7 @@ export class CinemasComponent {
   }
 
   public onCinemaClicked(cinemaId: number): void{
-    ;
+    this.router.navigate(['/cinema',cinemaId]);
   }
 }
 

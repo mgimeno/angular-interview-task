@@ -17,8 +17,8 @@ export class BookingsService {
     return this.apiService.get<IBookingsApiResponse>(this.endpoint, pageNumber);
   }
 
-  save(): Observable<any>{
-    return this.apiService.put<any>(this.endpoint, null);
+  save(payload: {screeningId: number, seat: number}): Observable<any>{
+    return this.apiService.put<any>(this.endpoint, payload);
   }
 
 }

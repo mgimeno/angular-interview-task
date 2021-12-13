@@ -24,7 +24,7 @@
     </ng-container>
   
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row class="clickable" matRipple *matRowDef="let row; columns: displayedColumns;" (click)="onCinemaClicked(row.id)"></mat-row>
+    <mat-row class="clickable" *matRowDef="let row; columns: displayedColumns;" (click)="onCinemaClicked(row.id)"></mat-row>
   </mat-table>
 
   <app-paginator 

@@ -1,15 +1,16 @@
-<form (ngSubmit)="onSubmit()" autocomplete="off">
-  <h1 mat-dialog-title i18n="@@add-booking.title">Add booking</h1>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" autocomplete="off">
+  <h1 mat-dialog-title i18n="@@add-screen.title">Add screen</h1>
   <mat-dialog-content>
 
     <mat-form-field [formGroup]=formGroup>
       <input 
-      type="number" 
+      type="text" 
       matInput 
-      formControlName="seat" 
-      placeholder="Seats" 
+      formControlName="name" 
+      placeholder="Name" 
+      [maxlength]="maxNameLength" 
       autocomplete=”false” 
-      name=searchSeats>
+      name=searchName>
     </mat-form-field>
     
   </mat-dialog-content>

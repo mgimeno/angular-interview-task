@@ -1,16 +1,23 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" autocomplete="off">
-  <h1 mat-dialog-title i18n="@@add-cinema.title">Add cinema</h1>
+  <h1 mat-dialog-title i18n="@@add-screening.title">Add screening</h1>
   <mat-dialog-content>
 
     <mat-form-field [formGroup]=formGroup>
+      <mat-select formControlName="movieId" placeholder="Movie">
+          <mat-option *ngFor="let movie of movies" [value]="movie.id">
+              {{movie.name}}
+          </mat-option>
+      </mat-select>
+  
+  </mat-form-field>
+
+    <mat-form-field [formGroup]=formGroup>
       <input 
-      type="text" 
+      type="datetime-local" 
       matInput 
-      formControlName="name" 
-      placeholder="Name" 
-      [maxlength]="maxNameLength" 
-      autocomplete=”false” 
-      name=searchName>
+      formControlName="startTime" 
+      placeholder="Start time" 
+      >
     </mat-form-field>
     
   </mat-dialog-content>

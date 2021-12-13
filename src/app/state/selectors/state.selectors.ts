@@ -1,16 +1,16 @@
 import { createFeatureSelector, createSelector, MemoizedSelector } from "@ngrx/store";
 import { AppConstants } from "src/app/constants";
-import { IBookingsState, ICinemaContent, ICinemasState, IDashboardTile, IMoviesState, IScreensState } from "src/app/intefaces";
+import { IBookingsState, ICinemasState, IDashboardTile, IMoviesState, IScreensState } from "src/app/intefaces";
+import { ISelectedCinemaState } from "src/app/intefaces/selected-cinema-state.interface";
 import { AppState } from "../reducers";
 import { appFeatureName } from "../state";
 
 export const getAppState: MemoizedSelector<any, AppState> = createFeatureSelector<AppState>(appFeatureName);
 
-export const getSelectedCinema: MemoizedSelector<any, ICinemaContent | undefined> = createSelector(getAppState, ({selectedCinema}) => selectedCinema);
+export const getSelectedCinema: MemoizedSelector<any, ISelectedCinemaState> = createSelector(getAppState, ({selectedCinema}) => selectedCinema);
 
 export const getCinemas: MemoizedSelector<any, ICinemasState> = createSelector(getAppState, ({cinemas}) => cinemas);
 export const getIsLoadingCinemas: MemoizedSelector<any, boolean> = createSelector(getCinemas, ({isLoading}) => isLoading);
-export const getCinemasPageNumber: MemoizedSelector<any, number> = createSelector(getCinemas, ({pageNumber}) => pageNumber);
 
 export const getMovies: MemoizedSelector<any, IMoviesState> = createSelector(getAppState, ({movies}) => movies);
 export const getIsLoadingMovies: MemoizedSelector<any, boolean> = createSelector(getMovies, ({isLoading}) => isLoading);

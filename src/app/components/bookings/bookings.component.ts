@@ -15,13 +15,10 @@ export class BookingsComponent {
 
   displayedColumns: string[] = ['id'];
 
-  constructor(private router: Router,private dialog: MatDialog) {}
+  constructor(private router: Router) {}
 
   public onPageSelected(pageNumber: number): void{
     this.router.navigate(['/bookings',pageNumber]);
   }
 
-  public onAddElement(): void{
-    this.dialog.open(AddBookingDialogComponent);
-  }
 }

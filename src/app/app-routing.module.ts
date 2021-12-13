@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookingsContainerComponent, CinemasContainerComponent, DashboardContainerComponent, MoviesContainerComponent, TaskRequirementsComponent } from './components';
+import { BookingsContainerComponent, CinemaContainerComponent, CinemasContainerComponent, DashboardContainerComponent, MoviesContainerComponent, TaskRequirementsComponent } from './components';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -12,6 +12,9 @@ const routes: Routes = [
       {path: '', component: CinemasContainerComponent},
       {path: ':id', component: CinemasContainerComponent}
     ]
+  },
+  {
+    path: 'cinema/:id', component: CinemaContainerComponent,
   },
   {
     path: 'movies',

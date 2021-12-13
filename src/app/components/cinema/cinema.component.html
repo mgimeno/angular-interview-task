@@ -1,0 +1,97 @@
+<ng-container *ngIf="!cinema || cinema.isLoading">
+  <h1>Cinema</h1>
+  <app-loader></app-loader>
+</ng-container>
+
+<ng-container *ngIf="cinema && !cinema.isLoading">
+  <ng-container *ngIf="!cinema.id || !cinema.name">
+    <h1>Cinema not found</h1>
+  </ng-container>
+  <ng-container *ngIf="cinema.id && cinema.name">
+    <h1>Cinema: {{cinema.name}}</h1>
+
+    <div class="title-container">
+      <h2>Screens</h2>
+      <button type="button" mat-raised-button color="primary" (click)="onAddScreen()"><mat-icon>add</mat-icon> Add screen</button>
+    </div>
+
+    <app-loader *ngIf="cinema.isLoadingScreens"></app-loader>
+  
+    <mat-table *ngIf="!cinema.isLoadingScreens" [dataSource]="cinema.screens!" class="mat-elevation-z1" id="screens">
+  
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name || "N/A"}} </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="screensDisplayedColumns"></mat-header-row>
+      <mat-row class="clickable" *matRowDef="let row; columns: screensDisplayedColumns;" (click)="onScreenClicked(row)"></mat-row>
+    </mat-table>
+
+    <ng-container *ngIf="cinema.selectedScreen">
+      <br>
+      <h2>Screen: {{cinema.selectedScreen.name}}</h2>
+
+      <div class="title-container">
+        <h2>Screenings</h2>
+        <button type="button" mat-raised-button color="primary" (click)="onAddScreening()"><mat-icon>add</mat-icon> Add screening</button>
+      </div>
+
+    <app-loader *ngIf="cinema.isLoadingScreenings"></app-loader>
+  
+    <mat-table *ngIf="!cinema.isLoadingScreenings" [dataSource]="cinema.screenings!" class="mat-elevation-z1" id="screenings">
+  
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="start">
+        <mat-header-cell *matHeaderCellDef> Start </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <ng-container *ngIf="element.start">
+            {{element.start | date: 'medium'}}
+          </ng-container>
+          <ng-container *ngIf="!element.start">
+            N/A
+          </ng-container>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="movieName">
+        <mat-header-cell *matHeaderCellDef> Movie </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.movie.name || "N/A"}} </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="screeningsDisplayedColumns"></mat-header-row>
+      <mat-row class="clickable" *matRowDef="let row; columns: screeningsDisplayedColumns;" (click)="onScreeningClicked(row.id)"></mat-row>
+    </mat-table>
+
+      <ng-container *ngIf="cinema.selectedScreening">
+        <br>
+        <div class="title-container" id="screening">
+          <h2>
+            Screening: 
+            <ng-container *ngIf="cinema.selectedScreening.start">
+              {{cinema.selectedScreening.start | date: 'medium'}}
+            </ng-container>
+            <ng-container *ngIf="!cinema.selectedScreening.start">
+              N/A
+            </ng-container>
+            - {{cinema.selectedScreening.movie.name}}</h2>
+          <button type="button" mat-raised-button color="primary" (click)="onAddBooking()"><mat-icon>add</mat-icon> Add booking</button>
+        </div>
+      </ng-container>
+
+    </ng-container>
+    
+
+  </ng-container>
+  
+
+</ng-container>
