@@ -270,7 +270,28 @@ export const reducer = createReducer(
             selectedCinema
         };
     }),
-    
+    on(AppActions.saveCinemaScreenStart, (state, {cinemaId, name}) => {
+        const selectedCinema = {...state.selectedCinema};
+
+        selectedCinema.selectedScreen = undefined;
+        selectedCinema.selectedScreening = undefined;
+        selectedCinema.screenings = undefined;
+
+        return {
+            ...state,
+            selectedCinema
+        };
+    }),
+    on(AppActions.saveCinemaScreenScreeningStart, (state, {cinemaId, screenId, screenName, movieId, startTime}) => {
+        const selectedCinema = {...state.selectedCinema};
+
+        selectedCinema.selectedScreening = undefined;
+
+        return {
+            ...state,
+            selectedCinema
+        };
+    }),
 );
 
 export const appReducer = (
