@@ -13,8 +13,14 @@
     </div>
 
     <app-loader *ngIf="cinema.isLoadingScreens"></app-loader>
+
+    <ng-container *ngIf="!cinema.isLoadingScreens">
+
+    <p *ngIf="!cinema.screens || !cinema.screens.length" class="text-center">
+      No screens available
+    </p>
   
-    <mat-table *ngIf="!cinema.isLoadingScreens" [dataSource]="cinema.screens!" class="mat-elevation-z1" id="screens">
+    <mat-table *ngIf="cinema.screens && cinema.screens.length" [dataSource]="cinema.screens!" class="mat-elevation-z1" id="screens">
   
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
@@ -30,6 +36,8 @@
       <mat-row class="clickable" *matRowDef="let row; columns: screensDisplayedColumns;" (click)="onScreenClicked(row)"></mat-row>
     </mat-table>
 
+  </ng-container>
+
     <ng-container *ngIf="cinema.selectedScreen">
       <br>
       <h2>Screen: {{cinema.selectedScreen.name}}</h2>
@@ -40,8 +48,14 @@
       </div>
 
     <app-loader *ngIf="cinema.isLoadingScreenings"></app-loader>
+
+    <ng-container *ngIf="!cinema.isLoadingScreenings">
+
+      <p *ngIf="!cinema.screenings || !cinema.screenings.length" class="text-center">
+        No screenings available
+      </p>
   
-    <mat-table *ngIf="!cinema.isLoadingScreenings" [dataSource]="cinema.screenings!" class="mat-elevation-z1" id="screenings">
+    <mat-table *ngIf="cinema.screenings && cinema.screenings.length" [dataSource]="cinema.screenings!" class="mat-elevation-z1" id="screenings">
   
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
@@ -68,6 +82,8 @@
       <mat-header-row *matHeaderRowDef="screeningsDisplayedColumns"></mat-header-row>
       <mat-row class="clickable" *matRowDef="let row; columns: screeningsDisplayedColumns;" (click)="onScreeningClicked(row.id)"></mat-row>
     </mat-table>
+
+  </ng-container>
 
       <ng-container *ngIf="cinema.selectedScreening">
         <br>
