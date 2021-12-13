@@ -3,7 +3,7 @@ export class CommonUtils {
     return window.innerWidth >= 800;
   }
 
-  public static scrollToId(id: string, behavior: ScrollBehavior = 'smooth', afterMilliseconds: number = 600): void{
+  public static scrollToId(id: string, behavior: ScrollBehavior = 'smooth', afterMilliseconds: number = 700): void{
     
 
       setTimeout(() => {

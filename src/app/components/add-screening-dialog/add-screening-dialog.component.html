@@ -5,7 +5,7 @@
     <mat-form-field [formGroup]=formGroup>
       <mat-select formControlName="movieId" placeholder="Movie">
           <mat-option *ngFor="let movie of movies" [value]="movie.id">
-              {{movie.name}}
+              {{movie.name || 'N/A'}}
           </mat-option>
       </mat-select>
   
