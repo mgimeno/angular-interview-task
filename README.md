@@ -1,15 +1,13 @@
 # Ultraplex Frontend - Cinema Management Tool
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
+## Demo URL
 
-## Development server
+[http://angular-interview-task.marcosgimeno.com](http://angular-interview-task.marcosgimeno.com)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## What is this?
 
-## Build
+A basic Cinema management tool for an angular interview technical task
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Development
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This project was generated with Angular CLI version 13.0.4.
