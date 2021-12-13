@@ -71,8 +71,7 @@
 
       <ng-container *ngIf="cinema.selectedScreening">
         <br>
-        <div class="title-container" id="screening">
-          <h2>
+          <h2 id="screening">
             Screening: 
             <ng-container *ngIf="cinema.selectedScreening.start">
               {{cinema.selectedScreening.start | date: 'medium'}}
@@ -81,6 +80,8 @@
               N/A
             </ng-container>
             - {{cinema.selectedScreening.movie.name}}</h2>
+          <br>
+          <div class="text-center">
           <button type="button" mat-raised-button color="primary" (click)="onAddBooking()"><mat-icon>add</mat-icon> Add booking</button>
         </div>
       </ng-container>
