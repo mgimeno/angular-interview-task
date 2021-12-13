@@ -3,18 +3,11 @@ export class CommonUtils {
     return window.innerWidth >= 800;
   }
 
-  public static scrollToId(id: string, behavior: ScrollBehavior = 'smooth', afterMilliseconds: number = 700): void{
-    
-
+  public static scrollToBottom(afterMilliseconds: number = 700): void{
+  
       setTimeout(() => {
-        const element = document.getElementById(id);
-        if(element){
-        element.scrollIntoView({
-          behavior
-        });
-      }
+        document.documentElement.scrollTop = document.documentElement.scrollHeight;
       }, afterMilliseconds);
       
-    
   }
 }

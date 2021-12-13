@@ -43,7 +43,7 @@ export class CinemaComponent {
       screenName: screen.name
     };
     this.screenSelected.emit(payload);
-    CommonUtils.scrollToId("screenings");
+    CommonUtils.scrollToBottom();
   }
 
   public onScreeningClicked(screeningId: number): void{
@@ -52,7 +52,7 @@ export class CinemaComponent {
       screeningId
     };
     this.screeningSelected.emit(payload);
-    CommonUtils.scrollToId("screening");
+    CommonUtils.scrollToBottom();
   }
   
 }

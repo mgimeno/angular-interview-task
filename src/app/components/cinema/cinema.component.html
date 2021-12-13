@@ -20,7 +20,7 @@
       No screens available
     </p>
   
-    <mat-table *ngIf="cinema.screens && cinema.screens.length" [dataSource]="cinema.screens!" class="mat-elevation-z1" id="screens">
+    <mat-table *ngIf="cinema.screens && cinema.screens.length" [dataSource]="cinema.screens!" class="mat-elevation-z1">
   
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
@@ -55,7 +55,7 @@
         No screenings available
       </p>
   
-    <mat-table *ngIf="cinema.screenings && cinema.screenings.length" [dataSource]="cinema.screenings!" class="mat-elevation-z1" id="screenings">
+    <mat-table *ngIf="cinema.screenings && cinema.screenings.length" [dataSource]="cinema.screenings!" class="mat-elevation-z1">
   
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
@@ -87,7 +87,7 @@
 
       <ng-container *ngIf="cinema.selectedScreening">
         <br>
-          <h2 id="screening">
+          <h2>
             Screening: 
             <ng-container *ngIf="cinema.selectedScreening.start">
               {{cinema.selectedScreening.start | date: 'medium'}}
