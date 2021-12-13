@@ -1,3 +1,4 @@
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, HostBinding, HostListener } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
@@ -26,7 +27,8 @@ export class AppComponent {
     private router: Router,
     private meta: Meta,
     private title: Title,
-    private bottomSheet: MatBottomSheet
+    private bottomSheet: MatBottomSheet,
+    private overlayContainer: OverlayContainer
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -62,10 +64,16 @@ export class AppComponent {
   }
 
   toggleDarkMode(): void{
-    this.className = (this.className === 'dark-mode' ? '' : 'dark-mode');
+    const darkMode = 'dark-mode';
+    this.className = (this.className === darkMode ? '' : darkMode);
     localStorage.setItem(
-      `${environment.localStoragePrefix}dark-mode`, this.className
+      `${environment.localStoragePrefix}${darkMode}`, this.className
     );
+    if (this.className === darkMode) {
+      this.overlayContainer.getContainerElement().classList.add(darkMode);
+    } else {
+      this.overlayContainer.getContainerElement().classList.remove(darkMode);
+    }
   }
 
   @HostListener('window:resize', ['$event'])
