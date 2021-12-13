@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, EMPTY, map, Observable, switchMap, tap } from "rxjs";
+import { catchError, EMPTY, map, Observable, switchMap, tap, withLatestFrom } from "rxjs";
 import { AppActions } from "../actions";
 import { BookingsService, CinemasService, MoviesService } from "src/app/services";
-import { IBookingsApiResponse, ICinemaContent, ICinemasApiResponse, IMoviesApiResponse, IScreeningsApiResponse, IScreensApiResponse } from "src/app/intefaces";
-import { ActivatedRoute, Router } from "@angular/router";
+import { IBookingsApiResponse, ICinemasApiResponse, IMoviesApiResponse, IScreeningsApiResponse, IScreensApiResponse } from "src/app/intefaces";
+import { Router } from "@angular/router";
 import { NotificationService } from "src/app/services/notification.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { AppState, getCinemasPageNumber, getMoviesPageNumber } from "..";
+import { Store } from "@ngrx/store";
 
 @Injectable()
 export class AppEffects{
@@ -14,6 +16,7 @@ export class AppEffects{
     constructor
     (
         private actions$: Actions,
+        private store$: Store<AppState>,
         private cinemasService: CinemasService, 
         private moviesService: MoviesService,
         private bookingsService: BookingsService,
@@ -91,13 +94,14 @@ export class AppEffects{
         public saveMovie$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AppActions.saveMovieStart),
-            switchMap(({name, runtime}) => 
-             this.moviesService.save({name, runtime})
+            withLatestFrom(this.store$.select(getMoviesPageNumber)),
+            switchMap(([payload, currentPageNumber]) => 
+             this.moviesService.save(payload)
                 .pipe(
                     map(() => {
                         this.notificationService.showSuccess("Movie saved successfully");
-                        this.router.navigate(['/movies']);
-                        return AppActions.fetchMoviesStart({isGetAll: false, pageNumber: 0});
+                        this.router.navigate(['/movies', (currentPageNumber + 1)]);
+                        return AppActions.fetchMoviesStart({isGetAll: false, pageNumber: currentPageNumber});
                     }),
                     catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
              ))
@@ -106,13 +110,14 @@ export class AppEffects{
         public saveCinema$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AppActions.saveCinemaStart),
-            switchMap(({name}) => 
-             this.cinemasService.save({name})
+            withLatestFrom(this.store$.select(getCinemasPageNumber)),
+            switchMap(([payload, currentPageNumber]) => 
+             this.cinemasService.save(payload)
                 .pipe(
                     map(() => {
                         this.notificationService.showSuccess("Cinema saved successfully");
-                        this.router.navigate(['/cinemas']);
-                        return AppActions.fetchCinemasStart({isGetAll: false, isGetAlsoScreens: false, pageNumber: 0});
+                        this.router.navigate(['/cinemas', (currentPageNumber + 1)]);
+                        return AppActions.fetchCinemasStart({isGetAll: false, isGetAlsoScreens: false, pageNumber: currentPageNumber});
                     }),
                     catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
              ))

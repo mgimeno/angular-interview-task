@@ -11,9 +11,11 @@ export const getSelectedCinema: MemoizedSelector<any, ISelectedCinemaState> = cr
 
 export const getCinemas: MemoizedSelector<any, ICinemasState> = createSelector(getAppState, ({cinemas}) => cinemas);
 export const getIsLoadingCinemas: MemoizedSelector<any, boolean> = createSelector(getCinemas, ({isLoading}) => isLoading);
+export const getCinemasPageNumber: MemoizedSelector<any, number> = createSelector(getCinemas, ({pageNumber}) => pageNumber);
 
 export const getMovies: MemoizedSelector<any, IMoviesState> = createSelector(getAppState, ({movies}) => movies);
 export const getIsLoadingMovies: MemoizedSelector<any, boolean> = createSelector(getMovies, ({isLoading}) => isLoading);
+export const getMoviesPageNumber: MemoizedSelector<any, number> = createSelector(getMovies, ({pageNumber}) => pageNumber);
 
 export const getBookings: MemoizedSelector<any, IBookingsState> = createSelector(getAppState, ({bookings}) => bookings);
 export const getIsLoadingBookings: MemoizedSelector<any, boolean> = createSelector(getBookings, ({isLoading}) => isLoading);
