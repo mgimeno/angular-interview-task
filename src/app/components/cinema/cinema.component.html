@@ -4,11 +4,8 @@
 </ng-container>
 
 <ng-container *ngIf="cinema && !cinema.isLoading">
-  <ng-container *ngIf="!cinema.id || !cinema.name">
-    <h1>Cinema not found</h1>
-  </ng-container>
-  <ng-container *ngIf="cinema.id && cinema.name">
-    <h1>Cinema: {{cinema.name}}</h1>
+  <ng-container *ngIf="cinema.id">
+    <h1>Cinema: {{cinema.name || 'N/A'}}</h1>
 
     <div class="title-container">
       <h2>Screens</h2>
