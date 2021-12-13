@@ -15,8 +15,12 @@ export class DashboardContainerComponent implements OnInit {
   }
 
   public ngOnInit(): void{
-    this.store$.dispatch(AppActions.fetchDashboardInfo());
     this.dashboardTiles$ = this.store$.pipe(select(getDashboardTiles));
+    this.refreshDashboard();
+  }
+
+  public refreshDashboard(): void{
+    this.store$.dispatch(AppActions.fetchDashboardInfo());
   }
 
 }
