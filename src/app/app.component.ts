@@ -88,18 +88,18 @@ export class AppComponent {
   }
 
   private addTitleAndMetaTags(): void {
-    this.title.setTitle($localize`:@@index.title:My Earnings Today`);
+    this.title.setTitle($localize`:@@index.title:Ultraplex Frontend - Cinema Management Tool`);
     this.meta.updateTag(<MetaDefinition>{
       name: 'description',
-      content: $localize`:@@index.meta_description:Calculate how much you have already earned today and compare with others`,
+      content: $localize`:@@index.meta_description:Cinema Management Tool for a technical task`,
     });
     this.meta.updateTag(<MetaDefinition>{
       property: 'og:title',
-      content: $localize`:@@index.title:My Earnings Today`,
+      content: $localize`:@@index.title:Ultraplex Frontend - Cinema Management Tool`,
     });
     this.meta.updateTag(<MetaDefinition>{
       property: 'og:description',
-      content: $localize`:@@index.meta_og_description:Calculate how much you have already earned today and compare with others`,
+      content: $localize`:@@index.meta_og_description:Cinema Management Tool for a technical task`,
     });
 
     const languageCode = localStorage.getItem(

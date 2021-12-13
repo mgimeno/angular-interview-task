@@ -19,6 +19,7 @@
   [selectedPage]="(bookings.pageNumber + 1)" 
   [totalPages]="bookings.totalPages" 
   [numberOfElementsShowing]="bookings.elements.length"
+  [pageSize]="bookings.pageSize"
   [totalElements]="bookings.totalElements"
   (pageSelected)="onPageSelected($event)">
   </app-paginator>

@@ -33,7 +33,7 @@
       </ng-container>
     
       <mat-header-row *matHeaderRowDef="screensDisplayedColumns"></mat-header-row>
-      <mat-row class="clickable" *matRowDef="let row; columns: screensDisplayedColumns;" (click)="onScreenClicked(row)"></mat-row>
+      <mat-row class="clickable" [class.selected]="cinema.selectedScreen && cinema.selectedScreen.id === row.id" *matRowDef="let row; columns: screensDisplayedColumns;" (click)="onScreenClicked(row)"></mat-row>
     </mat-table>
 
   </ng-container>
@@ -80,7 +80,7 @@
       </ng-container>
     
       <mat-header-row *matHeaderRowDef="screeningsDisplayedColumns"></mat-header-row>
-      <mat-row class="clickable" *matRowDef="let row; columns: screeningsDisplayedColumns;" (click)="onScreeningClicked(row.id)"></mat-row>
+      <mat-row class="clickable" [class.selected]="cinema.selectedScreening && cinema.selectedScreening.id === row.id" *matRowDef="let row; columns: screeningsDisplayedColumns;" (click)="onScreeningClicked(row.id)"></mat-row>
     </mat-table>
 
   </ng-container>

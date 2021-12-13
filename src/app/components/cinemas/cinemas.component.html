@@ -31,6 +31,7 @@
   [selectedPage]="(cinemas.pageNumber + 1)" 
   [totalPages]="cinemas.totalPages" 
   [numberOfElementsShowing]="cinemas.elements.length"
+  [pageSize]="cinemas.pageSize"
   [totalElements]="cinemas.totalElements"
   (pageSelected)="onPageSelected($event)">
   </app-paginator>

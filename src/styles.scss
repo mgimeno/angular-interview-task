@@ -94,7 +94,7 @@ table {
 }
 
 
-.mat-row.clickable:hover{
+.mat-row.clickable:hover, .mat-row.selected{
   background-color: $primaryColor;
 
   .mat-cell{
