@@ -19,6 +19,6 @@ export class DashboardComponent {
      if(path){
       this.router.navigate([path]);
      }
-     
    }
+
 }

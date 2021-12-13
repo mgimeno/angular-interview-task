@@ -30,7 +30,7 @@
   <app-paginator 
   [selectedPage]="(movies.pageNumber + 1)" 
   [totalPages]="movies.totalPages" 
-  [pageSize]="movies.pageSize"
+  [numberOfElementsShowing]="movies.elements.length"
   [totalElements]="movies.totalElements"
   (pageSelected)="onPageSelected($event)">
   </app-paginator>

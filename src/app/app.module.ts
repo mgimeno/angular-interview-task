@@ -24,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatTableModule} from '@angular/material/table';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -81,6 +82,7 @@ import { AddCinemaDialogComponent } from './components/add-cinema-dialog/add-cin
     MatGridListModule,
     MatTableModule,
     MatSnackBarModule,
+    MatTooltipModule,
     StoreModule.forFeature(appFeatureName, appReducers),
     EffectsModule.forFeature([AppEffects]),
     StoreModule.forRoot({}),

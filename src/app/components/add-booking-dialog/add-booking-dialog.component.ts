@@ -4,8 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState, saveBookingStart } from 'src/app/state';
 
 @Component({
-  templateUrl: './add-booking-dialog.component.html',
-  styleUrls: ['./add-booking-dialog.component.scss']
+  templateUrl: './add-booking-dialog.component.html'
 })
 export class AddBookingDialogComponent {
   

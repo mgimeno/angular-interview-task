@@ -2,6 +2,16 @@
 
 .mat-toolbar {
   height: $headerHeight;
+  display: flex;
+  justify-content: space-between;
+
+  .left{
+    display:flex;
+  }
+  .right{
+    position: relative;
+    top: 4px;
+  }
 }
 
 .main-container {

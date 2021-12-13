@@ -7,8 +7,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { AppState, saveMovieStart } from 'src/app/state';
 
 @Component({
-  templateUrl: './add-movie-dialog.component.html',
-  styleUrls: ['./add-movie-dialog.component.scss']
+  templateUrl: './add-movie-dialog.component.html'
 })
 export class AddMovieDialogComponent {
 

@@ -24,7 +24,6 @@ export class CinemasContainerComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.route.paramMap
       .subscribe((params) => {
         const pageNumber = params.get('id') ? Number(params.get('id')) - 1 : 0;
-        console.error({pageNumber});
         this.store$.dispatch(AppActions.fetchCinemasStart({isGetAll: false, isGetAlsoScreens: false, pageNumber}));
       }));
 

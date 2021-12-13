@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostBinding, HostListener } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
@@ -20,6 +20,7 @@ export class AppComponent {
   currentLanguageCode: string | null = localStorage.getItem(
     `${environment.localStoragePrefix}language`
   );
+  @HostBinding('class') className = '';
 
   constructor(
     private router: Router,
@@ -32,6 +33,10 @@ export class AppComponent {
         this.currentUrl = this.router.routerState.snapshot.url;
       }
     });
+
+    this.className = localStorage.getItem(
+      `${environment.localStoragePrefix}dark-mode`
+    ) || '';
 
     this.addTitleAndMetaTags();
   }
@@ -54,6 +59,13 @@ export class AppComponent {
         }
       }
     });
+  }
+
+  toggleDarkMode(): void{
+    this.className = (this.className === 'dark-mode' ? '' : 'dark-mode');
+    localStorage.setItem(
+      `${environment.localStoragePrefix}dark-mode`, this.className
+    );
   }
 
   @HostListener('window:resize', ['$event'])

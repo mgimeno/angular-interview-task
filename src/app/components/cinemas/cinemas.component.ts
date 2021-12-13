@@ -24,5 +24,9 @@ export class CinemasComponent {
   public onAddElement(): void{
     this.dialog.open(AddCinemaDialogComponent);
   }
+
+  public onCinemaClicked(cinemaId: number): void{
+    ;
+  }
 }
 

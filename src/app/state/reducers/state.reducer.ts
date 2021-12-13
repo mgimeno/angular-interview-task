@@ -103,7 +103,6 @@ export const reducer = createReducer(
         cinemas.totalElements = data.totalElements;
         cinemas.totalPages = data.totalPages;
         cinemas.pageSize = data.size;
-        console.error({cinemas});
         if(isGetAll){
             cinemas.isLoading = cinemas.elements.length !== data.totalElements;
             if(isGetAlsoScreens){
@@ -130,7 +129,6 @@ export const reducer = createReducer(
         movies.totalElements = data.totalElements;
         movies.totalPages = data.totalPages;
         movies.pageSize = data.size;
-        console.error({movies});
         if(isGetAll){
             movies.isLoading = movies.elements.length !== data.totalElements;
         }
@@ -150,7 +148,6 @@ export const reducer = createReducer(
         bookings.totalElements = data.totalElements;
         bookings.totalPages = data.totalPages;
         bookings.pageSize = data.size;
-        console.error({bookings});
         if(isGetAll){
             bookings.isLoading = bookings.elements.length !== data.totalElements;
         }

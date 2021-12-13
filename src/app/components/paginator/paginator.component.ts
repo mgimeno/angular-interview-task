@@ -12,7 +12,7 @@ export class PaginatorComponent {
   @Input()
   public totalPages: number | undefined = 0;
   @Input()
-  public pageSize: number | undefined = 0;
+  public numberOfElementsShowing: number | undefined = 0;
   @Input()
   public totalElements: number | undefined = 0;
 

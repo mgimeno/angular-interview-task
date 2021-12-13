@@ -1,7 +1,7 @@
 
 <div *ngIf="totalPages" class="paginator m-t-40">
-    <p class="text-center">
-        Showing {{pageSize}} of {{totalElements}}
+    <p *ngIf="totalElements" class="text-center">
+        Showing {{numberOfElementsShowing}} elements of {{totalElements}} total elements
     </p>
     <div class="paginator__pages-container">
         <div 

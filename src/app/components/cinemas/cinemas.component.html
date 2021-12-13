@@ -24,13 +24,13 @@
     </ng-container>
   
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row class="clickable" matRipple *matRowDef="let row; columns: displayedColumns;" (click)="onCinemaClicked(row.id)"></mat-row>
   </mat-table>
 
   <app-paginator 
   [selectedPage]="(cinemas.pageNumber + 1)" 
   [totalPages]="cinemas.totalPages" 
-  [pageSize]="cinemas.pageSize"
+  [numberOfElementsShowing]="cinemas.elements.length"
   [totalElements]="cinemas.totalElements"
   (pageSelected)="onPageSelected($event)">
   </app-paginator>
