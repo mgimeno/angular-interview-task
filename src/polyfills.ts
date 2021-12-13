@@ -89,6 +89,7 @@ switch (language) {
       'menu.add-booking': 'Añadir reserva',
       'menu.requirements': 'Requisitos',
       'menu.language': 'Idioma',
+      'menu.screens': 'Pantallas',
 
       'select-language.select': 'Selecciona un idioma',
 
@@ -113,6 +114,7 @@ switch (language) {
       'menu.add-booking': 'Buchung hinzufügen',
       'menu.requirements': 'Bedarf',
       'menu.language': 'Sprache',
+      'menu.screens': 'Bildschirme',
 
       'select-language.select': 'Wähle eine Sprache',
 

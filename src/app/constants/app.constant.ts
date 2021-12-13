@@ -15,7 +15,7 @@ export namespace AppConstants {
   export const initialDashboardTilesInfo: IDashboardTile[] = [
     {
       id: 'cinemas',
-      title: 'Cinemas', //todo translate
+      title: $localize`:@@menu.cinemas:Cinemas`,
       onClickPath: 'cinemas',
       class: 'green',
       count: undefined,
@@ -23,7 +23,7 @@ export namespace AppConstants {
     },
     {
       id: 'movies',
-      title: 'Movies',
+      title: $localize`:@@menu.movies:Movies`,
       onClickPath: 'movies',
       class: 'purple',
       count: undefined,
@@ -31,7 +31,7 @@ export namespace AppConstants {
     },
     {
       id: 'screens',
-      title: 'Screens',
+      title: $localize`:@@menu.screens:Screens`,
       onClickPath: undefined,
       class: 'red',
       count: undefined,
@@ -39,7 +39,7 @@ export namespace AppConstants {
     },
     {
       id: 'bookings',
-      title: 'Bookings',
+      title: $localize`:@@menu.bookings:Bookings`,
       onClickPath: 'bookings',
       class: 'blue',
       count: undefined,

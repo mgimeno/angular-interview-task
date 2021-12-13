@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { ICinemasApiResponse, ICinemaContent } from '../intefaces';
+import { ICinemasApiResponse } from '../intefaces';
 import { ApiService} from './api.service';
 
 @Injectable({
