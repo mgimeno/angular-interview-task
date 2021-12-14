@@ -8,7 +8,6 @@ import { SelectLanguageComponent } from '..';
 
 @Component({
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent {
 
@@ -30,7 +29,7 @@ export class SettingsComponent {
         `${environment.localStoragePrefix}api-use-max-page-size`,
         maxPageSize
       );
-      this.notificationService.showSuccess("Setting updated successfuly")
+      this.notificationService.showSuccess("Setting updated successfully")
     });
   }
 

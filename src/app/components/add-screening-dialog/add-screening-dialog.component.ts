@@ -2,8 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { IMovieContent, IMoviesState } from 'src/app/intefaces';
+import { Subscription } from 'rxjs';
+import { IMovieContent } from 'src/app/intefaces';
 import { NotificationService } from 'src/app/services/notification.service';
 import { AppActions, AppState, getMovies, saveCinemaScreenScreeningStart } from 'src/app/state';
 
