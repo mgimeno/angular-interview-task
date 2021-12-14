@@ -51,12 +51,6 @@
     flex: 1 0 auto;
     .mat-sidenav {
       width: 190px;
-
-      &:hover {
-        .grayscale-image-when-not-hover img {
-          filter: none;
-        }
-      }
     }
 
     .mat-sidenav-content {
@@ -77,15 +71,8 @@
         color: #000;
       }
 
-      .flag-container {
-        margin-left: 2px;
-      }
     }
 
-    .grayscale-image-when-not-hover {
-      img {
-        filter: grayscale(100%);
-      }
-    }
+    
   }
 }

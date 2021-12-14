@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookingsContainerComponent, CinemaContainerComponent, CinemasContainerComponent, DashboardContainerComponent, MoviesContainerComponent, TaskRequirementsComponent } from './components';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { BookingsContainerComponent, PageNotFoundComponent, CinemaContainerComponent, CinemasContainerComponent, DashboardContainerComponent, MoviesContainerComponent, SettingsComponent, TaskRequirementsComponent } from './components';
 
 const routes: Routes = [
   { path: '', component: DashboardContainerComponent, pathMatch: 'full' },
@@ -31,6 +30,7 @@ const routes: Routes = [
     ]
   },
   { path: 'task-requirements', component: TaskRequirementsComponent, pathMatch: 'full' },
+  { path: 'settings', component: SettingsComponent, pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
 

@@ -18,16 +18,12 @@ export class AppComponent {
   windowSizeChangeTimeout: any = null;
   isLargeScreen: boolean = CommonUtils.isLargeScreen();
   currentUrl = '/';
-  currentLanguageCode: string | null = localStorage.getItem(
-    `${environment.localStoragePrefix}language`
-  );
   @HostBinding('class') className = '';
 
   constructor(
     private router: Router,
     private meta: Meta,
     private title: Title,
-    private bottomSheet: MatBottomSheet,
     private overlayContainer: OverlayContainer
   ) {
     this.router.events.subscribe((event) => {
@@ -45,22 +41,6 @@ export class AppComponent {
 
   doesUrlStartWith(url: string): boolean {
     return this.currentUrl.startsWith(url);
-  }
-
-  openSelectLanguage(): void {
-    const bottomSheetRef = this.bottomSheet.open(SelectLanguageComponent);
-
-    bottomSheetRef.afterDismissed().subscribe((newLanguageCode: string) => {
-      if (newLanguageCode) {
-        if (newLanguageCode !== this.currentLanguageCode) {
-          localStorage.setItem(
-            `${environment.localStoragePrefix}language`,
-            newLanguageCode
-          );
-          window.location.reload();
-        }
-      }
-    });
   }
 
   toggleDarkMode(): void{

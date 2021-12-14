@@ -25,6 +25,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatTableModule} from '@angular/material/table';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -34,7 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { AppEffects, appFeatureName, appReducers } from './state';
 import { EffectsModule } from '@ngrx/effects';
-import { AddBookingDialogComponent, AddScreenDialogComponent, AddScreeningDialogComponent, BookingsComponent, BookingsContainerComponent, CinemaComponent, CinemaContainerComponent, CinemasContainerComponent, DashboardContainerComponent, PaginatorComponent, TaskRequirementsComponent } from './components';
+import { AddBookingDialogComponent, AddScreenDialogComponent, AddScreeningDialogComponent, BookingsComponent, BookingsContainerComponent, CinemaComponent, CinemaContainerComponent, CinemasContainerComponent, DashboardContainerComponent, PaginatorComponent, SettingsComponent, TaskRequirementsComponent } from './components';
 import { MoviesContainerComponent } from './components/movies-container/movies-container.component';
 import { TimesPipe } from './pipes/times.pipe';
 import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie-dialog.component';
@@ -63,7 +64,8 @@ import { AddCinemaDialogComponent } from './components/add-cinema-dialog/add-cin
     CinemaComponent,
     CinemaContainerComponent,
     AddScreenDialogComponent,
-    AddScreeningDialogComponent
+    AddScreeningDialogComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +89,7 @@ import { AddCinemaDialogComponent } from './components/add-cinema-dialog/add-cin
     MatTableModule,
     MatSnackBarModule,
     MatTooltipModule,
+    MatSlideToggleModule,
     StoreModule.forFeature(appFeatureName, appReducers),
     EffectsModule.forFeature([AppEffects]),
     StoreModule.forRoot({}),

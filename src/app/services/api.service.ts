@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpMethodsEnum } from '../enums';
+import { AppConstants } from '../constants';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,9 @@ export class ApiService {
     }
     if(pageSize){
       params.size = pageSize;
+    }
+    else if(localStorage.getItem(`${environment.localStoragePrefix}api-use-max-page-size`)?.toString() === "true"){
+      params.size = AppConstants.MAX_API_PAGE_SIZE;
     }
     return this.call<T>(HttpMethodsEnum.GET,
       endpoint, null, params);

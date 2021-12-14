@@ -18,3 +18,4 @@ export * from './cinema/cinema.component';
 export * from './cinema-container/cinema-container.component';
 export * from './add-screen-dialog/add-screen-dialog.component';
 export * from './add-screening-dialog/add-screening-dialog.component';
+export * from './settings/settings.component';

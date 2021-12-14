@@ -1,0 +1,18 @@
+<h1 i18n="@@menu.settings">Settings</h1>
+
+<p>These settings are saved in the local storage</p>
+
+<form autocomplete="off" [formGroup]="formGroup" class="m-t-30 m-b-20">
+      <mat-slide-toggle formControlName="api-use-max-page-size">
+          Request maximum page size ({{maxAPIPageSize}} elements)
+        </mat-slide-toggle>
+        <br />
+        <small>* This will result in fewer API calls and likely no need for paginators.</small>
+</form>
+
+<button type="button" mat-raised-button (click)="openSelectLanguage()">
+    <div class="flag-container">
+      <img [src]="'/assets/images/flags/' + currentLanguageCode + '.svg'" alt="language-flag" width="21" height="16" />
+      <span i18n="@@menu.language">Language</span>
+    </div>
+</button>

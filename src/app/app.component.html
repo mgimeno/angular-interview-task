@@ -98,19 +98,14 @@
         >
         <a
           mat-list-item
-          (click)="openSelectLanguage(); !isLargeScreen && snav.toggle()"
-          [class.grayscale-image-when-not-hover]="isLargeScreen"
+          [routerLink]="['/settings']"
+          (click)="window.scrollTo(0, 0); !isLargeScreen && snav.toggle()"
+          [class.active]="doesUrlStartWith('/settings')"
         >
-          <div class="flag-container">
-            <img
-              [src]="'/assets/images/flags/' + currentLanguageCode + '.svg'"
-              alt="language-flag"
-              width="21"
-              height="16"
-            />
-            <span i18n="@@menu.language">Language</span>
-          </div>
-        </a>
+          <mat-icon>settings</mat-icon>
+          <span i18n="@@menu.settings">Settings</span></a
+        >
+
       </mat-nav-list>
     </mat-sidenav>
 

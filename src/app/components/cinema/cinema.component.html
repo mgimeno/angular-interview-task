@@ -39,7 +39,7 @@
   </ng-container>
 
     <ng-container *ngIf="cinema.selectedScreen">
-      <br>
+      <br />
       <h2>Screen: {{cinema.selectedScreen.name}}</h2>
 
       <div class="title-container">
@@ -86,7 +86,7 @@
   </ng-container>
 
       <ng-container *ngIf="cinema.selectedScreening">
-        <br>
+        <br />
           <h2>
             Screening: 
             <ng-container *ngIf="cinema.selectedScreening.start">
@@ -96,7 +96,7 @@
               N/A
             </ng-container>
             - {{cinema.selectedScreening.movie.name}}</h2>
-          <br>
+          <br />
           <div class="text-center">
           <button type="button" mat-raised-button color="primary" (click)="onAddBooking()"><mat-icon>add</mat-icon> Add booking</button>
         </div>

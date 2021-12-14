@@ -90,6 +90,7 @@ switch (language) {
       'menu.requirements': 'Requisitos',
       'menu.language': 'Idioma',
       'menu.screens': 'Pantallas',
+      'menu.settings': 'Ajustes',
 
       'select-language.select': 'Selecciona un idioma',
 
@@ -115,6 +116,7 @@ switch (language) {
       'menu.requirements': 'Bedarf',
       'menu.language': 'Sprache',
       'menu.screens': 'Bildschirme',
+      'menu.settings': 'Einstellungen',
 
       'select-language.select': 'Wähle eine Sprache',
 
