@@ -3,12 +3,16 @@
   <button type="button" mat-raised-button color="primary" (click)="onAddElement()"><mat-icon>add</mat-icon> Add cinema</button>
 </div>
 
-
-
 <app-loader *ngIf="!cinemas || cinemas.isLoading"></app-loader>
 
 <ng-container *ngIf="cinemas && !cinemas.isLoading" >
-<mat-table [dataSource]="cinemas.elements" class="mat-elevation-z1">
+
+  <mat-form-field *ngIf="showSearch" class="search-form-field" appearance="standard">
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="search($event)" placeholder="Type to search..." #searchInput>
+  </mat-form-field>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
@@ -27,6 +31,12 @@
   
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row class="clickable" *matRowDef="let row; columns: displayedColumns;" (click)="onCinemaClicked(row.id)"></mat-row>
+
+    <ng-container *ngIf="showSearch">
+    <tr class="mat-row no-elements-matching-search-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the search filter</td>
+    </tr>
+  </ng-container>
   </mat-table>
 
   <app-paginator 
@@ -34,7 +44,7 @@
   [totalPages]="cinemas.totalPages" 
   [numberOfElementsShowing]="cinemas.elements.length"
   [pageSize]="cinemas.pageSize"
-  [totalElements]="cinemas.totalElements"
+  [totalElements]="showSearch ? dataSource.filteredData.length : cinemas.totalElements"
   (pageSelected)="onPageSelected($event)">
   </app-paginator>
 </ng-container>

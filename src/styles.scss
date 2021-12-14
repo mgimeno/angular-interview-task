@@ -124,3 +124,13 @@ table {
 .dark-mode .paginator__page:not(.selected){
   background-color: #424242;
 }
+
+.search-form-field{
+  width: 100%;
+}
+
+.no-elements-matching-search-row{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
