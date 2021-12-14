@@ -3,6 +3,8 @@
   <button type="button" mat-raised-button color="primary" (click)="onAddElement()"><mat-icon>add</mat-icon> Add cinema</button>
 </div>
 
+
+
 <app-loader *ngIf="!cinemas || cinemas.isLoading"></app-loader>
 
 <ng-container *ngIf="cinemas && !cinemas.isLoading" >
@@ -15,7 +17,7 @@
   
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name || "N/A"}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.name && element.name.trim() !== '' ? element.name : "N/A"}} </mat-cell>
     </ng-container>
   
     <ng-container matColumnDef="screens">

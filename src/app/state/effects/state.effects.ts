@@ -49,13 +49,10 @@ export class AppEffects{
                         }
                         return actions; 
                     }),
-                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+                    catchError((error: HttpErrorResponse) => { console.error(error); this.notificationService.showError(); return EMPTY; }) 
              ))
         ));
 
-       
-
-        
 
         public getMovies$ = createEffect(() =>
         this.actions$.pipe(
@@ -70,7 +67,7 @@ export class AppEffects{
                         }
                         return actions; 
                     }),
-                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+                    catchError((error: HttpErrorResponse) => { console.error(error); this.notificationService.showError(); return EMPTY; }) 
              ))
         ));
 
@@ -87,7 +84,7 @@ export class AppEffects{
                         }
                         return actions; 
                     }),
-                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+                    catchError((error: HttpErrorResponse) => { console.error(error); this.notificationService.showError(); return EMPTY; }) 
              ))
         ));
 
@@ -103,7 +100,7 @@ export class AppEffects{
                         this.router.navigate(['/movies', (currentPageNumber + 1)]);
                         return AppActions.fetchMoviesStart({isGetAll: false, pageNumber: currentPageNumber});
                     }),
-                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+                    catchError((error: HttpErrorResponse) => { console.error(error); this.notificationService.showError(); return EMPTY; }) 
              ))
         ));
 
@@ -119,7 +116,7 @@ export class AppEffects{
                         this.router.navigate(['/cinemas', (currentPageNumber + 1)]);
                         return AppActions.fetchCinemasStart({isGetAll: false, isGetAlsoScreens: false, pageNumber: currentPageNumber});
                     }),
-                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+                    catchError((error: HttpErrorResponse) => { console.error(error); this.notificationService.showError(); return EMPTY; }) 
              ))
         ));
 
@@ -132,7 +129,7 @@ export class AppEffects{
                     tap(() => {
                         this.notificationService.showSuccess("Booking saved successfully");
                     }),
-                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+                    catchError((error: HttpErrorResponse) => { console.error(error); this.notificationService.showError(); return EMPTY; }) 
              ))
         ),
         { dispatch: false }
@@ -156,7 +153,7 @@ export class AppEffects{
                             this.notificationService.showError("Cinema not found"); return EMPTY;
                         }
                     }),
-                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+                    catchError((error: HttpErrorResponse) => { console.error(error); this.notificationService.showError(); return EMPTY; }) 
              ))
         ));
 
@@ -169,7 +166,7 @@ export class AppEffects{
                     map((data: IScreensApiResponse) => 
                         AppActions.fetchCinemaScreensSuccess({data: data.content})
                     ),
-                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+                    catchError((error: HttpErrorResponse) => { console.error(error); this.notificationService.showError(); return EMPTY; }) 
              ))
         ));
 
@@ -191,7 +188,7 @@ export class AppEffects{
                         const screenings = data.content.filter(screening=> screening.screenName === screenName);
                         return AppActions.fetchCinemaScreenScreeningsSuccess({data: screenings});
                     }),
-                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+                    catchError((error: HttpErrorResponse) => { console.error(error); this.notificationService.showError(); return EMPTY; })  
              ))
         ));
 
@@ -205,7 +202,7 @@ export class AppEffects{
                         this.notificationService.showSuccess("Screen saved successfully");
                         return AppActions.fetchCinemaScreensStart({cinemaId});
                     }),
-                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+                    catchError((error: HttpErrorResponse) => { console.error(error); this.notificationService.showError(); return EMPTY; }) 
              ))
         ));
 
@@ -219,7 +216,7 @@ export class AppEffects{
                         this.notificationService.showSuccess("Screening saved successfully");
                         return AppActions.fetchCinemaScreenScreeningsStart({cinemaId, screenName});
                     }),
-                    catchError((error: HttpErrorResponse) => { this.notificationService.showError(error.message); return EMPTY; }) 
+                    catchError((error: HttpErrorResponse) => { console.error(error); this.notificationService.showError(); return EMPTY; }) 
              ))
         ));
 

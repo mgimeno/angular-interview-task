@@ -14,7 +14,7 @@ export class AddMovieDialogComponent {
   maxNameLength: number = AppConstants.MAX_NAME_LENGTH;
   formGroup: FormGroup = new FormGroup({
     'name': new FormControl(null, [Validators.required, Validators.maxLength(this.maxNameLength)]),
-    'runtime': new FormControl(null, [Validators.required, Validators.min(60),Validators.max(3600),  ]),
+    'runtime': new FormControl(null, [Validators.required, Validators.min(1),Validators.max(3600),  ]),
   });;
   
   constructor(

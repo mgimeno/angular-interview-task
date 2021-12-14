@@ -19,7 +19,7 @@ export class NotificationService {
     this.snackBar.open(text, undefined,config);
   }
 
-  showError(text:string): void{
+  showError(text?:string): void{
     let config: MatSnackBarConfig = <MatSnackBarConfig>{
       duration: AppConstants.NOTIFICATION_ERROR_DURATION_MILLISECONDS,
       panelClass: "error"

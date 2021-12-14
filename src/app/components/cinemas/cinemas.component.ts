@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ICinemasState } from 'src/app/intefaces';
 import { AddCinemaDialogComponent } from '..';
 

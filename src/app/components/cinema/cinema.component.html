@@ -5,7 +5,7 @@
 
 <ng-container *ngIf="cinema && !cinema.isLoading">
   <ng-container *ngIf="cinema.id">
-    <h1>Cinema: {{cinema.name || 'N/A'}}</h1>
+    <h1>Cinema: {{cinema.name && cinema.name.trim() !== '' ? cinema.name : 'N/A'}}</h1>
 
     <mat-expansion-panel [expanded]="isScreensPanelExpanded">
     <mat-expansion-panel-header (click)="isScreensPanelExpanded = !isScreensPanelExpanded">
@@ -43,7 +43,7 @@
       
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.name || "N/A"}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.name && element.name.trim() !== '' ? element.name : "N/A"}} </mat-cell>
         </ng-container>
       
         <mat-header-row *matHeaderRowDef="screensDisplayedColumns"></mat-header-row>

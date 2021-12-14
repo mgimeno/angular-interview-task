@@ -15,7 +15,7 @@
   
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name || "N/A"}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.name && element.name.trim() !== '' ? element.name : "N/A"}} </mat-cell>
     </ng-container>
   
     <ng-container matColumnDef="runtime">
