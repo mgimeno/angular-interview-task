@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IScreenContent } from 'src/app/intefaces';
 import { ISelectedCinemaState } from 'src/app/intefaces/selected-cinema-state.interface';
-import { CommonUtils } from 'src/app/utils';
 import { AddBookingDialogComponent, AddScreenDialogComponent } from '..';
 import { AddScreeningDialogComponent } from '../add-screening-dialog/add-screening-dialog.component';
 
@@ -21,6 +20,9 @@ export class CinemaComponent {
 
   screensDisplayedColumns : string[] = ['id', 'name'];
   screeningsDisplayedColumns: string[] = ['id', 'start', 'movieName'];
+
+  isScreensPanelExpanded: boolean = true;
+  isScreeningsPanelExpanded: boolean = true;
 
   constructor(private dialog: MatDialog) {}
 
@@ -43,7 +45,8 @@ export class CinemaComponent {
       screenName: screen.name
     };
     this.screenSelected.emit(payload);
-    CommonUtils.scrollToBottom();
+    this.isScreensPanelExpanded = false;
+    this.isScreeningsPanelExpanded = true;
   }
 
   public onScreeningClicked(screeningId: number): void{
@@ -52,7 +55,8 @@ export class CinemaComponent {
       screeningId
     };
     this.screeningSelected.emit(payload);
-    CommonUtils.scrollToBottom();
+    this.isScreensPanelExpanded = false;
+    this.isScreeningsPanelExpanded = false;
   }
   
 }

@@ -93,11 +93,30 @@ table {
   }
 }
 
-
 .mat-row.clickable:hover, .mat-row.selected{
   background-color: $primaryColor;
 
   .mat-cell{
       color: #fff;
   }
+}
+
+.mat-expansion-panel-header .mat-content{
+  align-items: center;
+}
+
+.mat-expansion-panel-header-description{
+  justify-content: flex-end;
+  margin-right: 5px;  
+}
+
+.mat-expansion-indicator{
+  position: relative;
+  bottom: 1px;
+}
+
+.mat-expanded .mat-expansion-indicator{
+  position: relative;
+  top: 5px;
+  bottom: 0;
 }
