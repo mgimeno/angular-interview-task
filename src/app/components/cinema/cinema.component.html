@@ -16,7 +16,7 @@
       <button 
       type="button"
        mat-icon-button color="primary" 
-       (click)="onAddScreen(); $event.stopPropagation();"
+       (click)="$event.preventDefault(); onAddScreen();"
        #tooltip="matTooltip"
         matTooltip="Add screen"
         [matTooltipPosition]="'below'"
@@ -67,7 +67,7 @@
           <button 
           type="button"
            mat-icon-button color="primary" 
-           (click)="onAddScreening(); $event.stopPropagation();"
+           (click)="$event.preventDefault(); onAddScreening();"
            #tooltip="matTooltip"
             matTooltip="Add screening"
             [matTooltipPosition]="'below'"
