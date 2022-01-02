@@ -27,13 +27,21 @@ export class CinemaComponent {
   constructor(private dialog: MatDialog) {}
 
   public onAddScreen(): void{
-    this.dialog.open(AddScreenDialogComponent, { data: { cinemaId: this.cinema?.id } });
-    this.isScreensPanelExpanded = true;
+    const dialogRef = this.dialog.open(AddScreenDialogComponent, { data: { cinemaId: this.cinema?.id } });
+    dialogRef.afterClosed().subscribe((result: { hasSaved: boolean}) => {
+      if (result?.hasSaved) {
+        this.isScreensPanelExpanded = true;
+      }
+    });
   }
 
   public onAddScreening(): void{
-    this.dialog.open(AddScreeningDialogComponent, { data: { cinemaId: this.cinema?.id, screenId: this.cinema?.selectedScreen?.id, screenName: this.cinema?.selectedScreen?.name } });
-    this.isScreeningsPanelExpanded = true;
+    const dialogRef = this.dialog.open(AddScreeningDialogComponent, { data: { cinemaId: this.cinema?.id, screenId: this.cinema?.selectedScreen?.id, screenName: this.cinema?.selectedScreen?.name } });
+    dialogRef.afterClosed().subscribe((result: { hasSaved: boolean}) => {
+      if (result?.hasSaved) {
+        this.isScreeningsPanelExpanded = true;
+      }
+    });
   }
 
   public onAddBooking(): void{

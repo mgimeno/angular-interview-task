@@ -38,12 +38,12 @@ export class AddScreenDialogComponent {
 
     this.store$.dispatch(saveCinemaScreenStart(payload));
 
-    this.onClose();
+    this.onClose(true);
 
   }
 
-  onClose(): void {
-    this.dialogRef.close();
+  onClose(hasSaved: boolean = false): void {
+    this.dialogRef.close({hasSaved});
   }
 
 }

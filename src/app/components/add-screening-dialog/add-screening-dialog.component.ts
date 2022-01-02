@@ -56,12 +56,12 @@ export class AddScreeningDialogComponent implements OnInit {
 
     this.store$.dispatch(saveCinemaScreenScreeningStart(payload));
 
-    this.onClose();
+    this.onClose(true);
 
   }
 
-  onClose(): void {
-    this.dialogRef.close();
+  onClose(hasSaved: boolean = false): void {
+    this.dialogRef.close({hasSaved});
   }
 
   ngOnDestroy(): void{

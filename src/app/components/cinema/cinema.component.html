@@ -16,7 +16,7 @@
       <button 
       type="button"
        mat-icon-button color="primary" 
-       (click)="$event.preventDefault(); onAddScreen();"
+       (click)="isScreensPanelExpanded = !isScreensPanelExpanded; onAddScreen();"
        #tooltip="matTooltip"
         matTooltip="Add screen"
         [matTooltipPosition]="'below'"
@@ -67,7 +67,7 @@
           <button 
           type="button"
            mat-icon-button color="primary" 
-           (click)="$event.preventDefault(); onAddScreening();"
+           (click)="isScreeningsPanelExpanded = !isScreeningsPanelExpanded; onAddScreening();"
            #tooltip="matTooltip"
             matTooltip="Add screening"
             [matTooltipPosition]="'below'"
