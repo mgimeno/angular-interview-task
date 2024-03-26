@@ -9,14 +9,14 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: npm run build --configuration production
+          command: ng build --configuration production
   deploy:
     executor: node/default
     steps:
       - run:
           command: ls
 workflows:
-  build-and-test:
+  build-and-deploy:
     jobs:
       - build
       - deploy:
