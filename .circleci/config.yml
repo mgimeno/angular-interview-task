@@ -11,10 +11,11 @@ jobs:
       - run:
           command: npm run build:production
   deploy:
-    executor: node/default
+    docker:
+      - image: cimg/base:2024.02
     steps:
       - run:
-          command: ls
+          command: scp -r ./dist/angular-interview-task/*.* $SSH_USER@$SSH_HOST:Websites/angularinterviewtask
 workflows:
   build-and-deploy:
     jobs:
