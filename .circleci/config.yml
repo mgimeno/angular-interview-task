@@ -1,0 +1,24 @@
+version: 2.1
+orbs:
+  node: circleci/node@5
+jobs:
+  build:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          command: ng build --configuration production
+  deploy:
+    executor: node/default
+    steps:
+      - run:
+          command: ls
+workflows:
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
