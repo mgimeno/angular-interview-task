@@ -23,8 +23,6 @@ jobs:
       - attach_workspace:
             at: ~/angular-interview-task
       - run:
-          command: ls
-      - run:
           command: |
             mkdir -p ~/.ssh
             ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
