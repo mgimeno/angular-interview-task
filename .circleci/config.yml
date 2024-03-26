@@ -31,7 +31,7 @@ jobs:
             - "SHA256:lakOTEoV2u8yOq2gKa0n5nZzlRlnVgLTI29394kSxAw"
       - run:
           command: |
-            scp -r ./dist/angular-interview-task $SSH_USER@$SSH_HOST:Websites/angularinterviewtask
+            scp -r ./dist/angular-interview-task/* $SSH_USER@$SSH_HOST:Websites/angularinterviewtask
 workflows:
   build-and-deploy:
     jobs:
