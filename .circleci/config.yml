@@ -16,6 +16,7 @@ jobs:
     steps:
       - run:
           command: |
+            mkdir -p ~/.ssh
             ssh-keyscan -p 443 ssh.github.com >> ~/.ssh/known_hosts
       - add_ssh_keys:
           fingerprints:
