@@ -9,7 +9,7 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: ng build --configuration production
+          command: npm run build:production
   deploy:
     executor: node/default
     steps:
