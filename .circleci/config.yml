@@ -11,8 +11,10 @@ jobs:
           pkg-manager: npm
       - run:
           command: npm run build:production
-      - run:
-          command: ls
+      - persist_to_workspace:
+            root: ~/angular-interview-task
+            paths:
+                - .
   deploy:
     working_directory: ~/angular-interview-task
     docker:
