@@ -4,17 +4,36 @@ orbs:
 jobs:
   build:
     executor: node/default
+    working_directory: ~/angular-interview-task
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: ng build --configuration production
+          command: npm run build:production
+      - persist_to_workspace:
+            root: ~/angular-interview-task
+            paths:
+                - .
   deploy:
-    executor: node/default
+    working_directory: ~/angular-interview-task
+    docker:
+      - image: cimg/base:2024.02
     steps:
+      - attach_workspace:
+            at: ~/angular-interview-task
       - run:
           command: ls
+      - run:
+          command: |
+            mkdir -p ~/.ssh
+            ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:lakOTEoV2u8yOq2gKa0n5nZzlRlnVgLTI29394kSxAw"
+      - run:
+          command: |
+            scp -r ./dist/angular-interview-task/*.* $SSH_USER@$SSH_HOST:Websites/angularinterviewtask
 workflows:
   build-and-deploy:
     jobs:
