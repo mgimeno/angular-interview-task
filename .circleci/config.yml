@@ -16,7 +16,8 @@ jobs:
     steps:
       - add_ssh_keys
       - run:
-          command: scp -r ./dist/angular-interview-task/*.* $SSH_USER@$SSH_HOST:Websites/angularinterviewtask
+          command: |
+            scp -r ./dist/angular-interview-task/*.* $SSH_USER@$SSH_HOST:Websites/angularinterviewtask
 workflows:
   build-and-deploy:
     jobs:
