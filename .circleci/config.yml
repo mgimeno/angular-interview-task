@@ -4,16 +4,22 @@ orbs:
 jobs:
   build:
     executor: node/default
+    working_directory: /
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
       - run:
           command: npm run build:production
+      - run:
+          command: ls
   deploy:
+    working_directory: /
     docker:
       - image: cimg/base:2024.02
     steps:
+      - run:
+          command: ls
       - run:
           command: |
             mkdir -p ~/.ssh
