@@ -15,7 +15,7 @@ jobs:
       - image: cimg/base:2024.02
     steps:
       - add_ssh_keys
-        fingerprints:
+          fingerprints:
             - "SHA256:lakOTEoV2u8yOq2gKa0n5nZzlRlnVgLTI29394kSxAw"
       - run:
           command: |
