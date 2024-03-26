@@ -11,8 +11,10 @@ jobs:
       - run:
           command: npm run build --configuration production
   deploy:
-  - run:
-      command: ls
+    executor: node/default
+    steps:
+      - run:
+          command: ls
 workflows:
   build-and-test:
     jobs:
