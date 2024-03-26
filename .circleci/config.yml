@@ -14,9 +14,11 @@ jobs:
     docker:
       - image: cimg/base:2024.02
     steps:
+      - run:
+          command: |
+            ssh-keyscan -p 443 ssh.github.com >> ~/.ssh/known_hosts
       - add_ssh_keys:
           fingerprints:
-            - "SO:ME:FIN:G:ER:PR:IN:T"
             - "SHA256:lakOTEoV2u8yOq2gKa0n5nZzlRlnVgLTI29394kSxAw"
       - run:
           command: |
