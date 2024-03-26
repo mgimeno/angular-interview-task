@@ -4,7 +4,7 @@ orbs:
 jobs:
   build:
     executor: node/default
-    working_directory: /
+    working_directory: ~/angular-interview-task
     steps:
       - checkout
       - node/install-packages:
@@ -14,10 +14,12 @@ jobs:
       - run:
           command: ls
   deploy:
-    working_directory: /
+    working_directory: ~/angular-interview-task
     docker:
       - image: cimg/base:2024.02
     steps:
+      - attach_workspace:
+            at: ~/angular-interview-task
       - run:
           command: ls
       - run:
