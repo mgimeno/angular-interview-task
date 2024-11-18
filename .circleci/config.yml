@@ -35,6 +35,7 @@ jobs:
             - "SHA256:lakOTEoV2u8yOq2gKa0n5nZzlRlnVgLTI29394kSxAw"
       - run:
           command: |
+            echo $CURRENT_DNS_VALUE
             scp -r ./dist/angular-interview-task/* $SSH_USER@$CURRENT_DNS_VALUE:apps/angular-interview-task
 workflows:
   build-and-deploy:
