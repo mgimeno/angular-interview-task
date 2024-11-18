@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@5
+  jq: circleci/jq@3.0.1
 jobs:
   build:
     executor: node/default
@@ -25,13 +26,16 @@ jobs:
       - run:
           command: |
             mkdir -p ~/.ssh
-            ssh-keyscan -6v $SSH_HOST >> ~/.ssh/known_hosts
+            DNS_RECORD=$(curl -sX GET "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/dns_records/?name=$CF_HOST_NAME" -H "Authorization: Bearer $CF_API_KEY"  | jq -r '.result[] | select(.name == "'$CF_HOST_NAME'")')
+            CURRENT_DNS_VALUE=$(echo $DNS_RECORD | jq -r '.content')
+            echo $CURRENT_DNS_VALUE
+            ssh-keyscan -6v $CURRENT_DNS_VALUE >> ~/.ssh/known_hosts
       - add_ssh_keys:
           fingerprints:
             - "SHA256:lakOTEoV2u8yOq2gKa0n5nZzlRlnVgLTI29394kSxAw"
       - run:
           command: |
-            scp -r ./dist/angular-interview-task/* $SSH_USER@$SSH_HOST:apps/angular-interview-task
+            scp -r ./dist/angular-interview-task/* $SSH_USER@$CURRENT_DNS_VALUE:apps/angular-interview-task
 workflows:
   build-and-deploy:
     jobs:
