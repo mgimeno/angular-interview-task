@@ -30,16 +30,13 @@ jobs:
             CURRENT_DNS_VALUE=$(echo $DNS_RECORD | jq -r '.content')
             echo $CURRENT_DNS_VALUE
             ssh-keyscan $CURRENT_DNS_VALUE >> ~/.ssh/known_hosts
-      - add_ssh_keys:
-          fingerprints:
-            - "SHA256:lakOTEoV2u8yOq2gKa0n5nZzlRlnVgLTI29394kSxAw"
       - run:
           command: |
             DNS_RECORD=$(curl -sX GET "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/dns_records/?name=$CF_HOST_NAME" -H "Authorization: Bearer $CF_API_KEY"  | jq -r '.result[] | select(.name == "'$CF_HOST_NAME'")')
             CURRENT_DNS_VALUE=$(echo $DNS_RECORD | jq -r '.content')
             echo $CURRENT_DNS_VALUE
             ssh $SSH_USER@$CURRENT_DNS_VALUE
-            scp -r ./dist/angular-interview-task/* $SSH_USER@$CURRENT_DNS_VALUE:apps/angular-interview-task
+            scp -r ./dist/angular-interview-task/* -p $SSH_PASSWORD $SSH_USER@$CURRENT_DNS_VALUE:apps/angular-interview-task
 workflows:
   build-and-deploy:
     jobs:
