@@ -31,7 +31,7 @@ jobs:
             ssh-keyscan $CURRENT_DNS_VALUE >> ~/.ssh/known_hosts
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:zPymMGLZ4RS0z/AGrUIlQW2XwKC+jNVKYqHpEZAOmKc mgimeno@gmail.com"
+            - "SHA256:zPymMGLZ4RS0z/AGrUIlQW2XwKC+jNVKYqHpEZAOmKc"
       - run:
           command: |
             DNS_RECORD=$(curl -sX GET "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/dns_records/?name=$CF_HOST_NAME" -H "Authorization: Bearer $CF_API_KEY"  | jq -r '.result[] | select(.name == "'$CF_HOST_NAME'")')
