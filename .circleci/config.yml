@@ -36,7 +36,7 @@ jobs:
           command: |
             DNS_RECORD=$(curl -sX GET "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/dns_records/?name=$CF_HOST_NAME" -H "Authorization: Bearer $CF_API_KEY"  | jq -r '.result[] | select(.name == "'$CF_HOST_NAME'")')
             CURRENT_DNS_VALUE=$(echo $DNS_RECORD | jq -r '.content')
-            scp -rv ./dist/angular-interview-task/* $SSH_USER@$CURRENT_DNS_VALUE:apps/angular-interview-task
+            scp -rv -i /home/circleci/.ssh/id_rsa_926ffcc2a6c08342f43908bffe7e1c6d ./dist/angular-interview-task/* $SSH_USER@$CURRENT_DNS_VALUE:apps/angular-interview-task
 workflows:
   build-and-deploy:
     jobs:
