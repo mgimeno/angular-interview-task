@@ -29,7 +29,9 @@ jobs:
           command: |
             mkdir -p ~/.ssh
             ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
-            scp -rv ./dist/angular-interview-task/* $SSH_USER@$SSH_HOST:apps/angular-interview-task
+            ssh $SSH_USER@$SSH_HOST "rm -dRf /home/mgimeno/apps/marcosgimeno.com/angular-interview-task"
+            ssh $SSH_USER@$SSH_HOST "mkdir -p /home/mgimeno/apps/marcosgimeno.com/angular-interview-task"
+            scp -rv ./dist/angular-interview-task/* $SSH_USER@$SSH_HOST:apps/marcosgimeno.com/angular-interview-task
 workflows:
   build-and-deploy:
     jobs:
