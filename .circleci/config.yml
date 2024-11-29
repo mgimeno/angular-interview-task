@@ -10,7 +10,7 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: npm run ng build -c production --base-href="/angular-interview-task/" --deploy-url="/angular-interview-task/"
+          command: npm run ng build -c production"
       - persist_to_workspace:
             root: ~/angular-interview-task
             paths:
@@ -31,7 +31,7 @@ jobs:
             ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
             ssh $SSH_USER@$SSH_HOST "rm -dRf /home/mgimeno/apps/angular-interview-task"
             ssh $SSH_USER@$SSH_HOST "mkdir -p /home/mgimeno/apps/angular-interview-task"
-            scp -rv ./dist/angular-interview-task/* $SSH_USER@$SSH_HOST:apps/angular-interview-task
+            scp -rv ./dist/* $SSH_USER@$SSH_HOST:apps/angular-interview-task
 workflows:
   build-and-deploy:
     jobs:
