@@ -24,7 +24,7 @@ jobs:
             at: ~/angular-interview-task
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:aLXDhOtsleOE7Di5o5DN1WNEt652NfL7YvmbAeAxB4c"
+            - "SHA256:URTfidP7xVnBRdhWO03zsI0UdDd1nk+ht5pqT1f4UcY"
       - run:
           command: |
             mkdir -p ~/.ssh
