@@ -2,7 +2,7 @@
 
 ## Demo URL
 
-[http://angular-interview-task.marcosgimeno.com](http://angular-interview-task.marcosgimeno.com)
+[https://marcosgimeno.com/angular-interview-task](https://marcosgimeno.com/angular-interview-task)
 
 ## What is this?
 
