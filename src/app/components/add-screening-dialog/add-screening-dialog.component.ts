@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -14,9 +14,9 @@ export class AddScreeningDialogComponent implements OnInit {
 
   public movies: IMovieContent[] = [];
 
-  public formGroup: FormGroup = new FormGroup({
-    'movieId': new FormControl(null, [Validators.required, Validators.min(1)]),
-    'startTime': new FormControl(null, [Validators.required])
+  public formGroup: UntypedFormGroup = new UntypedFormGroup({
+    'movieId': new UntypedFormControl(null, [Validators.required, Validators.min(1)]),
+    'startTime': new UntypedFormControl(null, [Validators.required])
   });;
 
   public subscriptions = new Subscription();

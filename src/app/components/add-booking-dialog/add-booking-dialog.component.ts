@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { NotificationService } from 'src/app/services';
@@ -10,8 +10,8 @@ import { AppState, saveBookingStart } from 'src/app/state';
 })
 export class AddBookingDialogComponent {
 
-  formGroup: FormGroup = new FormGroup({
-    'seat': new FormControl(null, [Validators.required, Validators.min(1)])
+  formGroup: UntypedFormGroup = new UntypedFormGroup({
+    'seat': new UntypedFormControl(null, [Validators.required, Validators.min(1)])
   });;
   
   constructor(

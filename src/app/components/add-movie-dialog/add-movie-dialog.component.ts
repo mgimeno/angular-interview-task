@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { AppConstants } from 'src/app/constants';
@@ -12,9 +12,9 @@ import { AppState, saveMovieStart } from 'src/app/state';
 export class AddMovieDialogComponent {
 
   maxNameLength: number = AppConstants.MAX_NAME_LENGTH;
-  formGroup: FormGroup = new FormGroup({
-    'name': new FormControl(null, [Validators.required, Validators.maxLength(this.maxNameLength)]),
-    'runtime': new FormControl(null, [Validators.required, Validators.min(1),Validators.max(3600),  ]),
+  formGroup: UntypedFormGroup = new UntypedFormGroup({
+    'name': new UntypedFormControl(null, [Validators.required, Validators.maxLength(this.maxNameLength)]),
+    'runtime': new UntypedFormControl(null, [Validators.required, Validators.min(1),Validators.max(3600),  ]),
   });;
   
   constructor(

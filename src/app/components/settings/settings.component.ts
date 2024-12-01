@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AppConstants } from 'src/app/constants';
 import { NotificationService } from 'src/app/services';
@@ -15,8 +15,8 @@ export class SettingsComponent {
   currentLanguageCode: string | null = localStorage.getItem(
     `${environment.localStoragePrefix}language`
   );
-  formGroup: FormGroup = new FormGroup({
-    'api-use-max-page-size': new FormControl(localStorage.getItem(
+  formGroup: UntypedFormGroup = new UntypedFormGroup({
+    'api-use-max-page-size': new UntypedFormControl(localStorage.getItem(
       `${environment.localStoragePrefix}api-use-max-page-size`,
     ) === "true")
   });;
